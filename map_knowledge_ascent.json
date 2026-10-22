@@ -1,0 +1,1165 @@
+{
+  "schemaVersion": "valorant-map-knowledge/v1",
+  "source": "C:/Users/zhenyuanni/Downloads/valorant_map_term_bindings (2).json",
+  "sourceSchemaVersion": "valorant-map-term-binding/v2",
+  "generatedAt": "2026-05-27T03:42:11.648Z",
+  "mapName": "亚海悬城",
+  "mapEnName": "Ascent",
+  "mapId": "7EAECC1B-4337-BBF6-6AB9-04B8F06B3319",
+  "image": "assets/map-images/yahaixuancheng.png",
+  "cleanImage": "assets/map-images-clean/yahaixuancheng.png",
+  "width": 996,
+  "height": 996,
+  "regionCount": 15,
+  "knowledgeCount": 134,
+  "regions": [
+    {
+      "id": "b_mpniio1m_io5ej",
+      "termId": "亚海悬城-A包",
+      "fullName": "亚海悬城-A包",
+      "regionName": "A包",
+      "regionType": "包点",
+      "x": 0.270381,
+      "y": 0.074372,
+      "w": 0.163153,
+      "h": 0.153391,
+      "knowledgeCount": 4,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "这里是爆能器安放处，此处容易被进攻方道具覆盖。可以利用箱子作为掩体，瞄准A区大道的敌人。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 4
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "这里是爆能器安放位置，容易被进攻方道具压制，利用箱子，瞄准A区大道现身的敌人。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 4
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "这里是爆能器核心安放点，很容易遭到进攻方道具覆盖干扰，依托箱子做掩体，架枪瞄准A区大道的敌人。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 4
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "可以在包点入口左右两侧死角架枪，防守A区大道进入的敌人。",
+          "sourceColumn": "架枪点位播报-文本1",
+          "sourceRow": 4
+        }
+      ]
+    },
+    {
+      "id": "b_mpniirci_b6mto",
+      "termId": "亚海悬城-A区小道",
+      "fullName": "亚海悬城-A区小道",
+      "regionName": "A区小道",
+      "regionType": "连接区",
+      "x": 0.436323,
+      "y": 0.311431,
+      "w": 0.061357,
+      "h": 0.114346,
+      "knowledgeCount": 4,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意A区小道两侧的死点，可以提前架枪瞄准，等敌人从小道进来。",
+          "sourceColumn": "防守方参照物-文本1",
+          "sourceRow": 5
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意A区小道，左右两侧的死角可以架枪，瞄准从那里进入的敌人。",
+          "sourceColumn": "防守方参照物-文本2",
+          "sourceRow": 5
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "A区小道左右两侧的死点很适合架枪，瞄准从A区小道进入的敌人。",
+          "sourceColumn": "防守方参照物-文本3",
+          "sourceRow": 5
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "A区小道左右两侧的死角，可以架枪瞄准从A区小道进来的敌人。",
+          "sourceColumn": "防守方参照物-文本4",
+          "sourceRow": 5
+        }
+      ]
+    },
+    {
+      "id": "b_mpniiuay_xzd1e",
+      "termId": "亚海悬城-A厅",
+      "fullName": "亚海悬城-A厅",
+      "regionName": "A厅",
+      "regionType": "连接区",
+      "x": 0.511624,
+      "y": 0.224974,
+      "w": 0.192436,
+      "h": 0.083668,
+      "knowledgeCount": 6,
+      "knowledge": [
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "可以在这里布置进攻A点的道具。小心敌人，利用墙壁作为掩体对枪，注意防守方可能用道具反制。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 2
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "布置好道具准备进攻A点，小心敌人。 对枪时记得利用墙壁做掩体，同时留意防守方的道具反制。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 2
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "提前在A点门口放好道具，小心敌人。 对枪时多利用墙壁做掩护，也要留意防守方会反丢道具哦。",
+          "sourceColumn": "进攻方视角播报-文本3",
+          "sourceRow": 2
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "提前布置道具，为进攻A部署区做准备。敌人可能前压。利用墙壁当掩体对枪，注意防守方道具。",
+          "sourceColumn": "进攻方视角播报-文本4",
+          "sourceRow": 2
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "可以在这提前布置进攻A点的道具。注意A区大道可能有敌人，先找墙当掩体对枪，小心道具反击。",
+          "sourceColumn": "进攻方视角播报-文本5",
+          "sourceRow": 2
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "提前在A部署区布置道具，小心大道前压的敌人。 以墙壁为掩体对枪，留意防守方的道具反制。",
+          "sourceColumn": "进攻方视角播报-文本6",
+          "sourceRow": 2
+        }
+      ]
+    },
+    {
+      "id": "b_mpnij2l6_l8kr6",
+      "termId": "亚海悬城-A大",
+      "fullName": "亚海悬城-A大",
+      "regionName": "A大",
+      "regionType": "入口",
+      "x": 0.434928,
+      "y": 0.091105,
+      "w": 0.076696,
+      "h": 0.198014,
+      "knowledgeCount": 14,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "光幕落下前，可以先到A区大道拱门这里，提前瞄准一下大道，看看有没有敌人过来。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "小心A厅和酒窖的敌人。光幕落下前，你可以先到大道的拱门后，提前瞄准并观察A区大道的情况。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "注意A厅方向，小心酒窖。你可以趁光幕落下前，去A区大道拱门那里看看，提前瞄准敌人位置。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "注意A厅方向，小心酒窖可能有敌人。光幕落下前，可以到拱门提前瞄准A区大道，先观察再行动。",
+          "sourceColumn": "防守方视角播报-文本4",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "注意A厅和酒窖的敌人。光幕落下前，可以到A区大道拱门提前瞄准，先观察情况。",
+          "sourceColumn": "防守方视角播报-文本5",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意隘口左侧，敌人可能在那出现。",
+          "sourceColumn": "防守方参照物-文本1",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意前方隘口，左侧可能有敌人。",
+          "sourceColumn": "防守方参照物-文本2",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "小心，左前方隘口可能有敌人。",
+          "sourceColumn": "防守方参照物-文本3",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "小心，前面路口左边可能有人。",
+          "sourceColumn": "防守方参照物-文本4",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "A区大道左侧靠墙，可以架枪瞄准入口。A区大道拱门下，也能架枪防守。",
+          "sourceColumn": "架枪点位播报-文本1",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "A区大道左侧靠墙和拱门下方，可以架枪瞄准入口的敌人，同样能守住A区大道的进攻路线。",
+          "sourceColumn": "架枪点位播报-文本2",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "A区大道左侧靠墙可以架枪，瞄准大道进来的敌人。 拱门下面也能架，守好这条必经之路。",
+          "sourceColumn": "架枪点位播报-文本3",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "A区大道左侧靠墙，可以架枪瞄准入口。A区拱门下也是不错的架枪点，能守住从大道来的敌人。",
+          "sourceColumn": "架枪点位播报-文本4",
+          "sourceRow": 3
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "A区大道左侧靠墙，可以架枪大道来的敌人。拱门下也是不错的架枪点，同样能守住A区大道的入口。",
+          "sourceColumn": "架枪点位播报-文本5",
+          "sourceRow": 3
+        }
+      ]
+    },
+    {
+      "id": "b_mpnij6l6_vasal",
+      "termId": "亚海悬城-B包",
+      "fullName": "亚海悬城-B包",
+      "regionName": "B包",
+      "regionType": "包点",
+      "x": 0.197869,
+      "y": 0.639131,
+      "w": 0.171519,
+      "h": 0.216142,
+      "knowledgeCount": 4,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "这里是爆能器安放处，敌人通常从B区大道进入。回防时要注意躲藏在船坞内的敌人和箱子后的死点。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 9
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "这里是爆能器安放点，敌人一般从 B 区大道进攻。回防注意船坞里和箱子死角的敌人。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 9
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "这里是爆能器安放位置，敌人大多从 B 区大道进入。回防时要留意躲在船坞里的敌人。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 9
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "包点内的死角和箱子后可以架枪，瞄准进入包点的敌人。重生点的楼梯，瞄准进入市场和包点的敌人。",
+          "sourceColumn": "架枪点位播报-文本1",
+          "sourceRow": 9
+        }
+      ]
+    },
+    {
+      "id": "b_mpnijb6s_fuue1",
+      "termId": "亚海悬城-B厅",
+      "fullName": "亚海悬城-B厅",
+      "regionName": "B厅",
+      "regionType": "连接区",
+      "x": 0.483735,
+      "y": 0.665625,
+      "w": 0.146419,
+      "h": 0.11853,
+      "knowledgeCount": 6,
+      "knowledge": [
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "提前在B部署区布置道具，注意B区大道可能有敌人前压。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 6
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "在B区提前准备投掷物，注意B区大道方向可能有敌人前压。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 6
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "在这里提前布置进攻B点的道具，注意B区大道可能有敌人前压。",
+          "sourceColumn": "进攻方视角播报-文本3",
+          "sourceRow": 6
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "先在这里准备B点的进攻道具，小心B区大道可能有敌人前压。",
+          "sourceColumn": "进攻方视角播报-文本4",
+          "sourceRow": 6
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "在这里可以提前准备进攻B点的道具，注意提防B区大道压出来的敌人。",
+          "sourceColumn": "进攻方视角播报-文本5",
+          "sourceRow": 6
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "可以提前在B点布好道具，注意提防B区大道前压的敌人。",
+          "sourceColumn": "进攻方视角播报-文本6",
+          "sourceRow": 6
+        }
+      ]
+    },
+    {
+      "id": "b_mpnijloj_gxomn",
+      "termId": "亚海悬城-B大1",
+      "fullName": "亚海悬城-B大1",
+      "regionName": "B大1",
+      "regionType": "入口",
+      "x": 0.373572,
+      "y": 0.689331,
+      "w": 0.112952,
+      "h": 0.089246,
+      "knowledgeCount": 21,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区大道路口多，要小心。多留意木箱后和拐角，记得搜点。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区拐角多，多留意木箱和墙角，小心埋伏。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区大道拐角多，小心木箱后和拐角，搜点要仔细。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "注意B区大道，这里有多个拐角，要仔细检查木箱后和转角位置，别漏掉隐蔽的死角。",
+          "sourceColumn": "防守方视角播报-文本4",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区大道拐角多，搜点要仔细。木箱后和拐角容易藏人，多留意这些位置。",
+          "sourceColumn": "防守方视角播报-文本5",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区拐角多，多搜搜木箱后和拐角，别急着往前冲。",
+          "sourceColumn": "防守方视角播报-文本6",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区通道弯道多，小心木箱后和拐角，记得检查每个角落。",
+          "sourceColumn": "防守方视角播报-文本7",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区大道路口复杂，多留意木箱和转角位置，小心敌人埋伏。",
+          "sourceColumn": "防守方视角播报-文本8",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "B区大道路口多，注意木箱后和拐角，仔细搜点。",
+          "sourceColumn": "防守方视角播报-文本9",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意前方木箱和拐角，敌人可能突然出现。",
+          "sourceColumn": "防守方参照物-文本1",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意前方木箱和拐角，敌人随时可能露头。",
+          "sourceColumn": "防守方参照物-文本2",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意前方木箱和拐角，敌人可能随时出现。",
+          "sourceColumn": "防守方参照物-文本3",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "在B区大门口架枪，等敌人经过时瞄准开火。",
+          "sourceColumn": "架枪点位播报-文本1",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "B区入口是个不错的架枪点，可以提前瞄准从B区大道过来的敌人。",
+          "sourceColumn": "架枪点位播报-文本2",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "B区大道入口是个不错的架枪点，注意瞄准从这里进B区的敌人。",
+          "sourceColumn": "架枪点位播报-文本3",
+          "sourceRow": 7
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "B区大道入口适合架枪，瞄准这里，等敌人经过。",
+          "sourceColumn": "架枪点位播报-文本4",
+          "sourceRow": 7
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "进B区前要小心。进门时先看部署区、市场和重生点方向。进去后记得关市场门，能挡住枪线。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 7
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "拐角小心埋伏，记得提前瞄准部署区、市场和守方重生点方向。关上市场门，能挡住侧面的威胁。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 7
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "进入B区，先瞄准部署区内、市场、出生点三个方向。拐角处要小心。关市场门，能挡住一侧的枪线。",
+          "sourceColumn": "进攻方视角播报-文本3",
+          "sourceRow": 7
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "前方拐角，可能有埋伏。进入B点前，先提前瞄准左侧、市场门口和守方重生点。仔细搜点再推进。",
+          "sourceColumn": "进攻方参照物-文本1",
+          "sourceRow": 7
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "前方拐角是常见埋伏点。进B点时先提前瞄准左侧、市场门口，还有守方出生点，仔细搜点再前进。",
+          "sourceColumn": "进攻方参照物-文本2",
+          "sourceRow": 7
+        }
+      ]
+    },
+    {
+      "id": "b_mpnijs03_mrtny",
+      "termId": "亚海悬城-B小",
+      "fullName": "亚海悬城-B小",
+      "regionName": "B小",
+      "regionType": "入口",
+      "x": 0.48234,
+      "y": 0.551279,
+      "w": 0.085062,
+      "h": 0.080879,
+      "knowledgeCount": 7,
+      "knowledge": [
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "注意A区小道，小心敌人前压。这是常规的观察点位，也可以选择去中路坡顶支援队友。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 8
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "观察A区小道，留意敌人是否前压。也可以选择去中路，帮坡顶的队友对枪。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 8
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "在A区小道这里可以架枪防守，观察有没有敌人前压。或者去中区坡顶，帮队友一起对枪。",
+          "sourceColumn": "进攻方视角播报-文本3",
+          "sourceRow": 8
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "留意A区小道，看有没有敌人前压。也可以选择去中路，支援坡顶的队友。",
+          "sourceColumn": "进攻方视角播报-文本4",
+          "sourceRow": 8
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "注意A区小道动静，这是架枪的常规点位，或者也可以去中路坡顶支援队友。",
+          "sourceColumn": "进攻方视角播报-文本5",
+          "sourceRow": 8
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "小心A区小道箱子，还有中区坡底拱门两侧，都可能有敌人。",
+          "sourceColumn": "进攻方参照物-文本1",
+          "sourceRow": 8
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "小心A区小道，箱子后可能有人。中区坡底拱门左右两侧，也要留意。",
+          "sourceColumn": "进攻方参照物-文本2",
+          "sourceRow": 8
+        }
+      ]
+    },
+    {
+      "id": "b_mpnijuw3_lw6ht",
+      "termId": "亚海悬城-中区坡底",
+      "fullName": "亚海悬城-中区坡底",
+      "regionName": "中区坡底",
+      "regionType": "中路",
+      "x": 0.369388,
+      "y": 0.435538,
+      "w": 0.068329,
+      "h": 0.11853,
+      "knowledgeCount": 14,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "你可以在这里和坡顶的敌人对峙，同时观察敌人的进攻方向，及时把信息告诉队友。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "在坡顶对枪时，记得利用掩体保护自己。同时观察敌人动向，及时告诉队友。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "可以在这里和坡上的敌人对枪，记得找好掩体保护自己。同时观察敌人动向，及时把信息分享给队友。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "可以在这里和坡顶的敌人对枪，记得利用掩体保护自己。观察敌人进攻方向，把信息及时告诉队友。",
+          "sourceColumn": "防守方视角播报-文本4",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "在坡顶这里，可以借助掩体和敌人对枪。记得观察敌人动向，及时把信息告诉队友。",
+          "sourceColumn": "防守方视角播报-文本5",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "站到坡顶掩体后，留意敌方动向。保持安全对枪，看到敌人记得报点。",
+          "sourceColumn": "防守方视角播报-文本6",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "在坡顶这里对枪，注意利用掩体保护自己。同时观察敌方动向，获取信息后及时告诉队友。",
+          "sourceColumn": "防守方视角播报-文本7",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意中区坡顶，左右两个绿箱后可能藏着敌人。",
+          "sourceColumn": "防守方参照物-文本1",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意中区坡顶，左右两侧的绿箱后面可能有敌人出现。",
+          "sourceColumn": "防守方参照物-文本2",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意中区坡顶，左右绿箱后可能有人。",
+          "sourceColumn": "防守方参照物-文本3",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意中区坡顶，左右两个绿箱后可能有人。",
+          "sourceColumn": "防守方参照物-文本4",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "中区坡顶左右两个绿箱，小心敌人可能出现。",
+          "sourceColumn": "防守方参照物-文本5",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意中区坡顶，绿箱两侧可能有人。",
+          "sourceColumn": "防守方参照物-文本6",
+          "sourceRow": 10
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意中区坡顶，左右两个绿箱后可能有人。",
+          "sourceColumn": "防守方参照物-文本7",
+          "sourceRow": 10
+        }
+      ]
+    },
+    {
+      "id": "b_mpnik3yr_m19lo",
+      "termId": "亚海悬城-中区坡顶",
+      "fullName": "亚海悬城-中区坡顶",
+      "regionName": "中区坡顶",
+      "regionType": "中路",
+      "x": 0.63852,
+      "y": 0.308642,
+      "w": 0.054384,
+      "h": 0.150602,
+      "knowledgeCount": 7,
+      "knowledge": [
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "瞄准中区坡底和A区小道时，提前架好枪。注意箱子能被子弹穿透，对枪时记得调整站位保护自己。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 11
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "瞄准中区坡底和A区小道，小心箱子能被打穿，控制好身位再对枪。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 11
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "瞄准中区坡底和A区小道，注意箱子可以穿透，控制好身位再对枪。",
+          "sourceColumn": "进攻方视角播报-文本3",
+          "sourceRow": 11
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "瞄准中区坡底和A区小道时，记得利用箱子做掩护。 但箱子能被穿透，对枪时注意控制身位。",
+          "sourceColumn": "进攻方视角播报-文本4",
+          "sourceRow": 11
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "瞄准中区坡底和A区小道，注意箱子可穿透，对枪时控制好身位。",
+          "sourceColumn": "进攻方视角播报-文本5",
+          "sourceRow": 11
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "可以在这里瞄准中区坡底和A区小道的敌人，注意箱子能被穿射，调整好身位再对枪。",
+          "sourceColumn": "进攻方视角播报-文本6",
+          "sourceRow": 11
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "瞄准中区坡底和A区小道，注意箱子可以被穿透。对枪时，记得控制好身位。",
+          "sourceColumn": "进攻方视角播报-文本7",
+          "sourceRow": 11
+        }
+      ]
+    },
+    {
+      "id": "b_mpnikaa3_u441m",
+      "termId": "亚海悬城-二楼",
+      "fullName": "亚海悬城-二楼",
+      "regionName": "二楼",
+      "regionType": "连接区",
+      "x": 0.214603,
+      "y": 0.068794,
+      "w": 0.051595,
+      "h": 0.245426,
+      "knowledgeCount": 10,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "二楼是常见的架枪位，视野可以覆盖A区大道和A区小道。要提防敌人从树屋摸上二楼。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 12
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "二楼是常见的架枪位，能守住A区大道和小道。树屋失守后要提防敌人从那里上二楼。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 12
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "二楼是架枪的好位置，可以瞄准A区大道和A区小道的敌人。敌人可能躲在铁箱或二楼下，需要防守。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 12
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "小心A区大道拱门和树屋门，那里容易有敌人。",
+          "sourceColumn": "防守方参照物-文本1",
+          "sourceRow": 12
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "进入A部署区后，可以占据二楼这个高点，观察并攻击从树屋、花园和对方重生点回防的敌人。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 12
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "进入A点后，占据二楼高点。这里视野很好，可以压制树屋、花园和敌人回防路线。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 12
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "注意前方拐角和花园二楼，敌人可能从这两个方向出现。",
+          "sourceColumn": "进攻方参照物-文本1",
+          "sourceRow": 12
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "注意前方拐角和花园二楼，敌人可能从这两个方向出现。",
+          "sourceColumn": "进攻方参照物-文本2",
+          "sourceRow": 12
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "小心，前方拐角可能藏着敌人，花园二楼也需要留意。",
+          "sourceColumn": "进攻方参照物-文本3",
+          "sourceRow": 12
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "参照物提示",
+          "content": "小心，前方拐角和花园二楼都可能藏有敌人。",
+          "sourceColumn": "进攻方参照物-文本4",
+          "sourceRow": 12
+        }
+      ]
+    },
+    {
+      "id": "b_mpnikenn_sx602",
+      "termId": "亚海悬城-市场",
+      "fullName": "亚海悬城-市场",
+      "regionName": "市场",
+      "regionType": "连接区",
+      "x": 0.256437,
+      "y": 0.516418,
+      "w": 0.093429,
+      "h": 0.089246,
+      "knowledgeCount": 11,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "小心B区大道和中路。可以在市场门口架枪，瞄准B区大道，防住从那边来的敌人。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "注意B区大道和中路，市场门口适合架枪，瞄准B区大道方向可以拦截进攻。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "注意B区大道和中路，市场门口适合架枪，拦截进攻。门关后及时调整位置，或打碎门协助防守。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "小心B区大道和中路，市场门口适合架枪，瞄准B区大道方向。",
+          "sourceColumn": "防守方视角播报-文本4",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意B区门口，敌人可能露头。中区坡顶左侧的绿箱子后，也要小心。",
+          "sourceColumn": "防守方参照物-文本1",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "B区门口可能有敌人，中区坡顶绿箱后也要小心。",
+          "sourceColumn": "防守方参照物-文本2",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "B区大道门口和中区坡顶左侧绿箱子后，可能有敌人。注意观察。",
+          "sourceColumn": "防守方参照物-文本3",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "B区大道门口，小心敌人可能露头。中区坡顶左侧的绿箱子后也要留意，可能有埋伏。",
+          "sourceColumn": "防守方参照物-文本4",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意B区门口和中路坡顶绿箱后，敌人可能在这两处出现。",
+          "sourceColumn": "防守方参照物-文本5",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "B区门口可能有敌人。中区坡顶左边绿箱子后也要小心。",
+          "sourceColumn": "防守方参照物-文本6",
+          "sourceRow": 14
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意B区大门口和中区坡顶左侧绿箱，可能有敌情。",
+          "sourceColumn": "防守方参照物-文本7",
+          "sourceRow": 14
+        }
+      ]
+    },
+    {
+      "id": "b_mpnikrde_us313",
+      "termId": "亚海悬城-树屋",
+      "fullName": "亚海悬城-树屋",
+      "regionName": "树屋",
+      "regionType": "连接区",
+      "x": 0.367994,
+      "y": 0.231946,
+      "w": 0.061357,
+      "h": 0.119924,
+      "knowledgeCount": 6,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "小心A区小道，这里位置窄，容易吃道具。小心树屋左边那扇门，可能被敌人关上",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 15
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "敌人可能从A区小道发起进攻，小心这里容易被道具覆盖。敌人进入部署区后可能会关上树屋的门。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 15
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "现在可以前往对方重生点附近，拦截他们回防路线。或者也可以退回到A部署区，找一个安全的位置。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 15
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "你可以继续去重生点附近，截断他们回防的路线；或者先退回A点，找个安全位置，阻止敌人拆包。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 15
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "你可以前往敌方重生点附近，拦截回防的敌人。也可以退回A部署区，找个安全的位置防守。",
+          "sourceColumn": "进攻方视角播报-文本3",
+          "sourceRow": 15
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "你可以继续向前，切断敌人的回防路线。或者，退回A部署区，找个好位置阻止他们拆包。",
+          "sourceColumn": "进攻方视角播报-文本4",
+          "sourceRow": 15
+        }
+      ]
+    },
+    {
+      "id": "b_mpnikvl0_8clov",
+      "termId": "亚海悬城-船坞",
+      "fullName": "亚海悬城-船坞",
+      "regionName": "船坞",
+      "regionType": "连接区",
+      "x": 0.20763,
+      "y": 0.858062,
+      "w": 0.124108,
+      "h": 0.061357,
+      "knowledgeCount": 9,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "可以在这里埋伏，等敌人进入B点。回防时也记得先清理船坞，小心埋伏。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "这个位置很隐蔽，适合埋伏B点敌人。注意敌人通常从B区大道方向过来，回防时记得检查船坞。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意B区大道，右侧墙壁后可能有敌人。",
+          "sourceColumn": "防守方参照物-文本1",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "注意B区大道的墙壁，小心敌人突然出现。",
+          "sourceColumn": "防守方参照物-文本2",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "参照物提示",
+          "content": "小心B区大道旁的墙角，可能有敌人。",
+          "sourceColumn": "防守方参照物-文本3",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "船坞里可以架枪，等敌人进部署区再打。",
+          "sourceColumn": "架枪点位播报-文本1",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "留意船坞这个位置，可以架枪瞄准，等敌人进入部署区。",
+          "sourceColumn": "架枪点位播报-文本2",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "船坞这里可以架枪，瞄准进入部署区的敌人。",
+          "sourceColumn": "架枪点位播报-文本3",
+          "sourceRow": 16
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "架枪点位",
+          "content": "船坞里可以提前架枪，瞄准从部署区入口过来的敌人。",
+          "sourceColumn": "架枪点位播报-文本4",
+          "sourceRow": 16
+        }
+      ]
+    },
+    {
+      "id": "b_mpnil2f0_thnly",
+      "termId": "亚海悬城-花园",
+      "fullName": "亚海悬城-花园",
+      "regionName": "花园",
+      "regionType": "连接区",
+      "x": 0.267592,
+      "y": 0.247285,
+      "w": 0.092035,
+      "h": 0.072512,
+      "knowledgeCount": 11,
+      "knowledge": [
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "可以去树屋或二楼帮忙防守。打碎二楼的窗户，能快速回防，但声音比较明显，要小心别被敌人发现。",
+          "sourceColumn": "防守方视角播报-文本1",
+          "sourceRow": 17
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "你可以去树屋或二楼帮队友防守。打碎二楼的窗户能快速回防，但会发出声响，小心别让敌人听到。",
+          "sourceColumn": "防守方视角播报-文本2",
+          "sourceRow": 17
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "可以先去树屋或二楼帮队友防守。如果想快速回防，可以击碎窗户，但要注意声响，别让敌人听到。",
+          "sourceColumn": "防守方视角播报-文本3",
+          "sourceRow": 17
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "树屋或二楼都能帮队友防守。击碎二楼窗户能快速回防，但要小心声响，别被敌人发现哦。",
+          "sourceColumn": "防守方视角播报-文本4",
+          "sourceRow": 17
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "可以先去树屋或二楼帮队友防守。击碎二楼窗户能快速回防，但会有声响，小心别暴露位置。",
+          "sourceColumn": "防守方视角播报-文本5",
+          "sourceRow": 17
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "可以考虑去树屋或二楼帮队友防守。击碎二楼窗户能快速回防，但会发出声音，小心别让敌人察觉。",
+          "sourceColumn": "防守方视角播报-文本6",
+          "sourceRow": 17
+        },
+        {
+          "side": "防守方",
+          "knowledgeType": "视角播报",
+          "content": "现在可以前往树屋或二楼支援防守。击碎二楼窗户能快速回防，但会发出声响，小心别暴露位置。",
+          "sourceColumn": "防守方视角播报-文本7",
+          "sourceRow": 17
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "可以继续前压，切断敌人回防。或者，退回A部署区，找个好位置阻止拆包。",
+          "sourceColumn": "进攻方视角播报-文本1",
+          "sourceRow": 17
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "继续去对面出生点卡住回防，或者先撤回A部署区，找个好位置守包。",
+          "sourceColumn": "进攻方视角播报-文本2",
+          "sourceRow": 17
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "继续前往守方重生点拦截回防，或者退回A部署区，寻找合适点位阻止拆包。",
+          "sourceColumn": "进攻方视角播报-文本3",
+          "sourceRow": 17
+        },
+        {
+          "side": "进攻方",
+          "knowledgeType": "视角播报",
+          "content": "可以继续前压，切断敌方回防路线；或者退到A部署区，找好位置守包。",
+          "sourceColumn": "进攻方视角播报-文本4",
+          "sourceRow": 17
+        }
+      ]
+    }
+  ]
+}

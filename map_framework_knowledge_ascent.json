@@ -1,0 +1,602 @@
+{
+  "schemaVersion": "valorant-map-framework-knowledge/v1",
+  "source": "C:\\Users\\zhenyuanni\\Desktop\\地图知识框架_模型填充版.xlsx",
+  "generatedAt": "2026-05-27T16:04:00+08:00",
+  "mapName": "亚海悬城",
+  "matchRule": "地图名相同，区域名去除空格/全角空格/下划线/短横线/斜杠后匹配",
+  "boxedRegionCount": 15,
+  "frameworkRegionCount": 17,
+  "matchedCount": 15,
+  "unmatchedBoxedRegions": [],
+  "extraFrameworkRegions": [
+    "二楼下",
+    "酒窖"
+  ],
+  "regions": [
+    {
+      "knowledgeId": "KN-亚海悬城-A 厅",
+      "mapName": "亚海悬城",
+      "regionName": "A 厅",
+      "normalizedRegionName": "a厅",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "进攻 A 点前的部署节点，可以提前准备进点道具。",
+      "landmarks": "A区大道入口",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "进攻方道具铺设和进点前集结地。",
+        "dangerDirections": "部署区拱门",
+        "keyAngles": "—",
+        "goal": "准备进点道具",
+        "recommendedActions": "1) 决定进攻策略；2) 利用墙壁掩体对枪；3) A大入口的墙壁可能会被单向烟覆盖",
+        "recommendedActionList": [
+          "决定进攻策略",
+          "利用墙壁掩体对枪",
+          "A大入口的墙壁可能会被单向烟覆盖"
+        ],
+        "phase": "进攻/进点前"
+      },
+      "defense": {
+        "typicalUse": "",
+        "dangerDirections": "",
+        "keyAngles": "",
+        "goal": "",
+        "recommendedActions": "",
+        "recommendedActionList": [],
+        "phase": ""
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-A 大",
+      "mapName": "亚海悬城",
+      "regionName": "A 大",
+      "normalizedRegionName": "a大",
+      "regionType": "入口",
+      "sideScope": "双方",
+      "positioning": "A 区主入口大道，是进攻A区的常见路线，敌人通常在A厅集结，也是防守方开局前压点位之一。",
+      "landmarks": "A区大道入口",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "进攻方通过A 大推进，建立进入目标区域的空间。",
+        "dangerDirections": "",
+        "keyAngles": "入口；大道",
+        "goal": "架枪、清点、压制敌方露头",
+        "recommendedActions": "1) 架枪参考：入口；大道",
+        "recommendedActionList": [
+          "架枪参考：入口；大道"
+        ],
+        "phase": "前期/进点前"
+      },
+      "defense": {
+        "typicalUse": "防守方开局可前压拱门，获取信息后可及时退回部署区。",
+        "dangerDirections": "进攻方可能从大道正面进攻",
+        "keyAngles": "部署区门口的拱门下、酒窖",
+        "goal": "前压、获取信息、残局回防路线",
+        "recommendedActions": "1) 光幕落下前架枪瞄准A区大道；2) 听到脚步可以选择退回部署区；3) A大入口的墙壁可能会被单向烟覆盖",
+        "recommendedActionList": [
+          "光幕落下前架枪瞄准A区大道",
+          "听到脚步可以选择退回部署区",
+          "A大入口的墙壁可能会被单向烟覆盖"
+        ],
+        "phase": "防守/架枪"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-A包",
+      "mapName": "亚海悬城",
+      "regionName": "A包",
+      "normalizedRegionName": "a包",
+      "regionType": "包点",
+      "sideScope": "双方",
+      "positioning": "A包是亚海悬城的爆能器安放与争夺核心区域，围绕进点、下包、守包和回防展开。",
+      "landmarks": "A区大道",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "进攻方在A包完成进点、下包和守包部署。",
+        "dangerDirections": "",
+        "keyAngles": "A区大道",
+        "goal": "进点、下包、建立守包位",
+        "recommendedActions": "1) 架枪参考：A区大道",
+        "recommendedActionList": [
+          "架枪参考：A区大道"
+        ],
+        "phase": "进攻进点/下包"
+      },
+      "defense": {
+        "typicalUse": "该区域是爆能器安放位置，容易被进攻方道具压制，利用箱子，瞄准A区大道现身的敌人",
+        "dangerDirections": "A区大道",
+        "keyAngles": "A区大道",
+        "goal": "守点、拖延进攻、回防清点",
+        "recommendedActions": "1) 该区域是爆能器安放位置，容易被进攻方道具压制，利用箱子，瞄准A区大道现身的敌人；2) 该区域是爆能器安放处，此处容易被进攻方道具覆盖可利用箱子作为掩体，瞄准A区大道的敌人；3) 架枪参考：A区大道",
+        "recommendedActionList": [
+          "该区域是爆能器安放位置，容易被进攻方道具压制，利用箱子，瞄准A区大道现身的敌人",
+          "该区域是爆能器安放处，此处容易被进攻方道具覆盖可利用箱子作为掩体，瞄准A区大道的敌人",
+          "架枪参考：A区大道"
+        ],
+        "phase": "防守守点/回防"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-A区小道",
+      "mapName": "亚海悬城",
+      "regionName": "A区小道",
+      "normalizedRegionName": "a区小道",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "A区小道是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "A区小道",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "",
+        "dangerDirections": "",
+        "keyAngles": "",
+        "goal": "",
+        "recommendedActions": "",
+        "recommendedActionList": [],
+        "phase": ""
+      },
+      "defense": {
+        "typicalUse": "防守方通过A区小道控线、反清并支援两侧区域。",
+        "dangerDirections": "A区小道",
+        "keyAngles": "A区小道",
+        "goal": "前压、架枪、获取信息后回收",
+        "recommendedActions": "1) 清点/留意：A区小道",
+        "recommendedActionList": [
+          "清点/留意：A区小道"
+        ],
+        "phase": "中前期/防守控图"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-B 厅",
+      "mapName": "亚海悬城",
+      "regionName": "B 厅",
+      "normalizedRegionName": "b厅",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "B 厅是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "在这里提前布置进攻B点的道具，注意B区大道可能有敌人前压",
+        "dangerDirections": "B区大道",
+        "keyAngles": "",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 在这里提前布置进攻B点的道具，注意B区大道可能有敌人前压；2) 在B区提前准备投掷物，注意B区大道方向可能有敌人前压",
+        "recommendedActionList": [
+          "在这里提前布置进攻B点的道具，注意B区大道可能有敌人前压",
+          "在B区提前准备投掷物，注意B区大道方向可能有敌人前压"
+        ],
+        "phase": "中前期/控图转点"
+      },
+      "defense": {
+        "typicalUse": "",
+        "dangerDirections": "",
+        "keyAngles": "",
+        "goal": "",
+        "recommendedActions": "",
+        "recommendedActionList": [],
+        "phase": ""
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-B 大 1",
+      "mapName": "亚海悬城",
+      "regionName": "B 大 1",
+      "normalizedRegionName": "b大1",
+      "regionType": "入口",
+      "sideScope": "双方",
+      "positioning": "B 大 1是进入目标区域或关键控图区的主要通道，常承担进攻推进与防守前压观察功能。",
+      "landmarks": "木箱和拐角；左侧、市场门口；开火；B区大道",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "拐角注意埋伏，记得提前瞄准部署区、市场和守方重生点方向关上市场门，能挡住侧面的威胁",
+        "dangerDirections": "左侧、市场门口",
+        "keyAngles": "开火；B区大道；瞄准从这里进B区",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 拐角注意埋伏，记得提前瞄准部署区、市场和守方重生点方向关上市场门，能挡住侧面的威胁；2) 进入B区，先瞄准部署区内、市场、出生点三个方向拐角处要注意关市场门，能挡住一侧的枪线；3) 清点/留意：左侧、市场门口",
+        "recommendedActionList": [
+          "拐角注意埋伏，记得提前瞄准部署区、市场和守方重生点方向关上市场门，能挡住侧面的威胁",
+          "进入B区，先瞄准部署区内、市场、出生点三个方向拐角处要注意关市场门，能挡住一侧的枪线",
+          "清点/留意：左侧、市场门口"
+        ],
+        "phase": "前期/进点前"
+      },
+      "defense": {
+        "typicalUse": "注意B区大道，这里有多个拐角，要仔细检查木箱后和转角位置，别漏掉隐蔽的死角",
+        "dangerDirections": "木箱和拐角",
+        "keyAngles": "开火；B区大道；瞄准从这里进B区",
+        "goal": "前压、架枪、获取信息后回收",
+        "recommendedActions": "1) 注意B区大道，这里有多个拐角，要仔细检查木箱后和转角位置，别漏掉隐蔽的死角；2) B区大道路口复杂，多留意木箱和转角位置，注意敌人埋伏；3) 清点/留意：木箱和拐角",
+        "recommendedActionList": [
+          "注意B区大道，这里有多个拐角，要仔细检查木箱后和转角位置，别漏掉隐蔽的死角",
+          "B区大道路口复杂，多留意木箱和转角位置，注意敌人埋伏",
+          "清点/留意：木箱和拐角"
+        ],
+        "phase": "前期/防守开局"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-B 小",
+      "mapName": "亚海悬城",
+      "regionName": "B 小",
+      "normalizedRegionName": "b小",
+      "regionType": "入口",
+      "sideScope": "双方",
+      "positioning": "B 小是进入目标区域或关键控图区的主要通道，常承担进攻推进与防守前压观察功能。",
+      "landmarks": "A区小道",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "在A区小道这里可架枪防守，观察有没有敌人前压或者去中区坡顶，帮队友一起对枪",
+        "dangerDirections": "A区小道",
+        "keyAngles": "A区小道",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 在A区小道这里可架枪防守，观察有没有敌人前压或者去中区坡顶，帮队友一起对枪；2) 注意A区小道，注意敌人前压这是常规的观察点位，也可选择去中路坡顶支援队友；3) 清点/留意：A区小道",
+        "recommendedActionList": [
+          "在A区小道这里可架枪防守，观察有没有敌人前压或者去中区坡顶，帮队友一起对枪",
+          "注意A区小道，注意敌人前压这是常规的观察点位，也可选择去中路坡顶支援队友",
+          "清点/留意：A区小道"
+        ],
+        "phase": "前期/进点前"
+      },
+      "defense": {
+        "typicalUse": "",
+        "dangerDirections": "",
+        "keyAngles": "",
+        "goal": "",
+        "recommendedActions": "",
+        "recommendedActionList": [],
+        "phase": ""
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-B包",
+      "mapName": "亚海悬城",
+      "regionName": "B包",
+      "normalizedRegionName": "b包",
+      "regionType": "包点",
+      "sideScope": "双方",
+      "positioning": "B包是亚海悬城的爆能器安放与争夺核心区域，围绕进点、下包、守包和回防展开。",
+      "landmarks": "进入包点",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "进攻方在B包完成进点、下包和守包部署。",
+        "dangerDirections": "",
+        "keyAngles": "进入包点",
+        "goal": "进点、下包、建立守包位",
+        "recommendedActions": "1) 架枪参考：进入包点",
+        "recommendedActionList": [
+          "架枪参考：进入包点"
+        ],
+        "phase": "进攻进点/下包"
+      },
+      "defense": {
+        "typicalUse": "该区域是爆能器安放处，敌人通常从B区大道进入回防时要注意躲藏在船坞内的敌人和箱子后的死点",
+        "dangerDirections": "躲藏在船坞内；船坞里和箱子死角；躲在船坞里",
+        "keyAngles": "进入包点",
+        "goal": "守点、拖延进攻、回防清点",
+        "recommendedActions": "1) 该区域是爆能器安放处，敌人通常从B区大道进入回防时要注意躲藏在船坞内的敌人和箱子后的；2) 该区域是爆能器安放点，敌人一般从B区大道进攻回防注意船坞里和箱子死角的敌人；3) 架枪参考：进入包点",
+        "recommendedActionList": [
+          "该区域是爆能器安放处，敌人通常从B区大道进入回防时要注意躲藏在船坞内的敌人和箱子后的",
+          "该区域是爆能器安放点，敌人一般从B区大道进攻回防注意船坞里和箱子死角的敌人",
+          "架枪参考：进入包点"
+        ],
+        "phase": "防守守点/回防"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-中区坡底",
+      "mapName": "亚海悬城",
+      "regionName": "中区坡底",
+      "normalizedRegionName": "中区坡底",
+      "regionType": "中区",
+      "sideScope": "双方",
+      "positioning": "中区坡底是地图中部控制区域，影响双方转点速度、夹击路线和信息获取。",
+      "landmarks": "中区坡顶",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "",
+        "dangerDirections": "",
+        "keyAngles": "",
+        "goal": "",
+        "recommendedActions": "",
+        "recommendedActionList": [],
+        "phase": ""
+      },
+      "defense": {
+        "typicalUse": "在坡顶这里对枪，注意利用掩体保护自己同时观察敌方动向，获取信息后及时告诉队友",
+        "dangerDirections": "中区坡顶",
+        "keyAngles": "中区坡顶",
+        "goal": "控图、反清、支援转点",
+        "recommendedActions": "1) 在坡顶这里对枪，注意利用掩体保护自己同时观察敌方动向，获取信息后及时告诉队友；2) 可在这里和坡顶的敌人对枪，记得利用掩体保护自己观察敌人进攻方向，把信息及时告诉队友；3) 清点/留意：中区坡顶",
+        "recommendedActionList": [
+          "在坡顶这里对枪，注意利用掩体保护自己同时观察敌方动向，获取信息后及时告诉队友",
+          "可在这里和坡顶的敌人对枪，记得利用掩体保护自己观察敌人进攻方向，把信息及时告诉队友",
+          "清点/留意：中区坡顶"
+        ],
+        "phase": "中前期/控图反清"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-中区坡顶",
+      "mapName": "亚海悬城",
+      "regionName": "中区坡顶",
+      "normalizedRegionName": "中区坡顶",
+      "regionType": "中区",
+      "sideScope": "双方",
+      "positioning": "中区坡顶是地图中部控制区域，影响双方转点速度、夹击路线和信息获取。",
+      "landmarks": "",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "瞄准中区坡底和A区小道时，提前架好枪注意箱子能被子弹穿透，对枪时记得调整站位保护自己",
+        "dangerDirections": "中区坡底和A区小道",
+        "keyAngles": "",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 瞄准中区坡底和A区小道时，提前架好枪注意箱子能被子弹穿透，对枪时记得调整站位保护自己；2) 瞄准中区坡底和A区小道时，记得利用箱子做掩护但箱子能被穿透，对枪时注意控制身位",
+        "recommendedActionList": [
+          "瞄准中区坡底和A区小道时，提前架好枪注意箱子能被子弹穿透，对枪时记得调整站位保护自己",
+          "瞄准中区坡底和A区小道时，记得利用箱子做掩护但箱子能被穿透，对枪时注意控制身位"
+        ],
+        "phase": "中前期/控图"
+      },
+      "defense": {
+        "typicalUse": "",
+        "dangerDirections": "",
+        "keyAngles": "",
+        "goal": "",
+        "recommendedActions": "",
+        "recommendedActionList": [],
+        "phase": ""
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-二楼",
+      "mapName": "亚海悬城",
+      "regionName": "二楼",
+      "normalizedRegionName": "二楼",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "二楼是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "A区大道拱门和树屋门；拐角",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "进入A部署区后，可占据二楼这个高点，观察并攻击从树屋、花园和对方重生点回防的敌人",
+        "dangerDirections": "拐角",
+        "keyAngles": "拐角",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 进入A部署区后，可占据二楼这个高点，观察并攻击从树屋、花园和对方重生点回防的敌人；2) 进入A点后，占据二楼高点这里视野很好，可压制树屋、花园和敌人回防路线；3) 清点/留意：拐角",
+        "recommendedActionList": [
+          "进入A部署区后，可占据二楼这个高点，观察并攻击从树屋、花园和对方重生点回防的敌人",
+          "进入A点后，占据二楼高点这里视野很好，可压制树屋、花园和敌人回防路线",
+          "清点/留意：拐角"
+        ],
+        "phase": "中后期/回防残局"
+      },
+      "defense": {
+        "typicalUse": "二楼是架枪的好位置，可瞄准A区大道和A区小道的敌人敌人可能躲在铁箱或二楼下，需要防守",
+        "dangerDirections": "A区大道拱门和树屋门",
+        "keyAngles": "A区大道拱门和树屋门",
+        "goal": "架枪、控线、压制进攻入口",
+        "recommendedActions": "1) 二楼是架枪的好位置，可瞄准A区大道和A区小道的敌人敌人可能躲在铁箱或二楼下，需要防守；2) 二楼是常见的架枪位，视野可覆盖A区大道和A区小道要提防敌人从树屋摸上二楼；3) 清点/留意：A区大道拱门和树屋门",
+        "recommendedActionList": [
+          "二楼是架枪的好位置，可瞄准A区大道和A区小道的敌人敌人可能躲在铁箱或二楼下，需要防守",
+          "二楼是常见的架枪位，视野可覆盖A区大道和A区小道要提防敌人从树屋摸上二楼",
+          "清点/留意：A区大道拱门和树屋门"
+        ],
+        "phase": "中前期/防守控图"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-二楼下",
+      "mapName": "亚海悬城",
+      "regionName": "二楼下",
+      "normalizedRegionName": "二楼下",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "二楼下是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "A区大道拱门和树屋门；拐角",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "进入A点后，优先占据二楼高点这里视野很好，可压制树屋、花园和敌人回防路线",
+        "dangerDirections": "拐角",
+        "keyAngles": "拐角",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 进入A点后，优先占据二楼高点这里视野很好，可压制树屋、花园和敌人回防路线；2) 进入A部署区后，先快速清理二楼敌人，然后可占据二楼这个高点，观察并攻击；3) 清点/留意：拐角",
+        "recommendedActionList": [
+          "进入A点后，优先占据二楼高点这里视野很好，可压制树屋、花园和敌人回防路线",
+          "进入A部署区后，先快速清理二楼敌人，然后可占据二楼这个高点，观察并攻击",
+          "清点/留意：拐角"
+        ],
+        "phase": "中后期/回防残局"
+      },
+      "defense": {
+        "typicalUse": "二楼是架枪的好位置，可瞄准A区大道和A区小道的敌人",
+        "dangerDirections": "A区大道拱门和树屋门",
+        "keyAngles": "A区大道拱门和树屋门",
+        "goal": "架枪、控线、压制进攻入口",
+        "recommendedActions": "1) 二楼是架枪的好位置，可瞄准A区大道和A区小道的敌人；2) 二楼是常见的架枪位，视野可覆盖A区大道和A区小道要提防敌人从树屋摸上二楼；3) 清点/留意：A区大道拱门和树屋门",
+        "recommendedActionList": [
+          "二楼是架枪的好位置，可瞄准A区大道和A区小道的敌人",
+          "二楼是常见的架枪位，视野可覆盖A区大道和A区小道要提防敌人从树屋摸上二楼",
+          "清点/留意：A区大道拱门和树屋门"
+        ],
+        "phase": "中前期/防守控图"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-市场",
+      "mapName": "亚海悬城",
+      "regionName": "市场",
+      "normalizedRegionName": "市场",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "市场是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "B区门口；B区大道门口；B区大门口和中区坡顶左侧绿箱",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "",
+        "dangerDirections": "",
+        "keyAngles": "",
+        "goal": "",
+        "recommendedActions": "",
+        "recommendedActionList": [],
+        "phase": ""
+      },
+      "defense": {
+        "typicalUse": "注意B区大道和中路可在市场门口架枪，瞄准B区大道，防住从那边来的敌人",
+        "dangerDirections": "B区门口；B区大道门口；B区大门口和中区坡顶左侧绿箱",
+        "keyAngles": "B区门口；B区大道门口；B区大门口和中区坡顶左侧绿箱",
+        "goal": "架枪、控线、压制进攻入口",
+        "recommendedActions": "1) 注意B区大道和中路可在市场门口架枪，瞄准B区大道，防住从那边来的敌人；2) 注意B区大道和中路，市场门口适合架枪，瞄准B区大道方向可拦截进攻；3) 清点/留意：B区门口；B区大道门口；B区大门口和中区坡顶左侧绿箱",
+        "recommendedActionList": [
+          "注意B区大道和中路可在市场门口架枪，瞄准B区大道，防住从那边来的敌人",
+          "注意B区大道和中路，市场门口适合架枪，瞄准B区大道方向可拦截进攻",
+          "清点/留意：B区门口；B区大道门口；B区大门口和中区坡顶左侧绿箱"
+        ],
+        "phase": "中前期/防守控图"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-树屋",
+      "mapName": "亚海悬城",
+      "regionName": "树屋",
+      "normalizedRegionName": "树屋",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "树屋是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "现在可前往对方重生点附近，拦截他们回防路线或者也可退回到A部署区，找一个安全的位置",
+        "dangerDirections": "现在；截断他们回防的路线；或者先退回A点；拦截回防的",
+        "keyAngles": "",
+        "goal": "控图、清点、转点或夹击",
+        "recommendedActions": "1) 现在可前往对方重生点附近，拦截他们回防路线或者也可退回到A部署区，找一个安全的位置；2) 可前往敌方重生点附近，拦截回防的敌人也可退回A部署区，找个安全的位置防守",
+        "recommendedActionList": [
+          "现在可前往对方重生点附近，拦截他们回防路线或者也可退回到A部署区，找一个安全的位置",
+          "可前往敌方重生点附近，拦截回防的敌人也可退回A部署区，找个安全的位置防守"
+        ],
+        "phase": "中后期/回防残局"
+      },
+      "defense": {
+        "typicalUse": "敌人可能从A区小道发起进攻，注意这里容易被道具覆盖敌人进入部署区后可能会关上树屋的门",
+        "dangerDirections": "树屋左边那扇门；容易被道具覆盖",
+        "keyAngles": "",
+        "goal": "控图、反清、支援转点",
+        "recommendedActions": "1) 敌人可能从A区小道发起进攻，注意这里容易被道具覆盖敌人进入部署区后可能会关上树屋的门；2) 注意A区小道，这里位置窄，容易吃道具注意树屋左边那扇门，可能被敌人关上",
+        "recommendedActionList": [
+          "敌人可能从A区小道发起进攻，注意这里容易被道具覆盖敌人进入部署区后可能会关上树屋的门",
+          "注意A区小道，这里位置窄，容易吃道具注意树屋左边那扇门，可能被敌人关上"
+        ],
+        "phase": "中前期/防守控图"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-船坞",
+      "mapName": "亚海悬城",
+      "regionName": "船坞",
+      "normalizedRegionName": "船坞",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "船坞是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "B区大道；船坞里；船坞该位置；进入部署区",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "进攻方利用船坞控图、转点或形成夹击。",
+        "dangerDirections": "",
+        "keyAngles": "船坞里；船坞该位置；进入部署区；部署区入口",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 架枪参考：船坞里；船坞该位置；进入部署区；部署区入口",
+        "recommendedActionList": [
+          "架枪参考：船坞里；船坞该位置；进入部署区；部署区入口"
+        ],
+        "phase": "中前期/控图转点"
+      },
+      "defense": {
+        "typicalUse": "可在这里埋伏，等敌人进入B点回防时也记得先清理船坞，注意埋伏",
+        "dangerDirections": "B区大道",
+        "keyAngles": "船坞里；船坞该位置；进入部署区；部署区入口",
+        "goal": "前压、架枪、获取信息后回收",
+        "recommendedActions": "1) 可在这里埋伏，等敌人进入B点回防时也记得先清理船坞，注意埋伏；2) 该位置很隐蔽，适合埋伏B点敌人注意敌人通常从B区大道方向过来，回防时记得检查船坞；3) 清点/留意：B区大道",
+        "recommendedActionList": [
+          "可在这里埋伏，等敌人进入B点回防时也记得先清理船坞，注意埋伏",
+          "该位置很隐蔽，适合埋伏B点敌人注意敌人通常从B区大道方向过来，回防时记得检查船坞",
+          "清点/留意：B区大道"
+        ],
+        "phase": "中后期/回防残局"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-花园",
+      "mapName": "亚海悬城",
+      "regionName": "花园",
+      "normalizedRegionName": "花园",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "花园是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "可继续前压，切断敌人回防或者，退回A部署区，找个好位置阻止拆包",
+        "dangerDirections": "切断；继续去对面出生点卡住回防；继续前往守方重生点拦截回防；或者退到A部署区",
+        "keyAngles": "",
+        "goal": "控图、清点、转点或夹击",
+        "recommendedActions": "1) 可继续前压，切断敌人回防或者，退回A部署区，找个好位置阻止拆包；2) 可继续前压，切断敌方回防路线",
+        "recommendedActionList": [
+          "可继续前压，切断敌人回防或者，退回A部署区，找个好位置阻止拆包",
+          "可继续前压，切断敌方回防路线"
+        ],
+        "phase": "中后期/回防残局"
+      },
+      "defense": {
+        "typicalUse": "可去树屋或二楼帮忙防守打碎二楼的窗户，能快速回防，但声音比较明显，要注意别被敌人发现",
+        "dangerDirections": "别被；别让；声响；别暴露位置",
+        "keyAngles": "",
+        "goal": "控图、反清、支援转点",
+        "recommendedActions": "1) 可去树屋或二楼帮忙防守打碎二楼的窗户，能快速回防，但声音比较明显，要注意别被敌人发现；2) 可考虑去树屋或二楼帮队友防守击碎二楼窗户能快速回防，但会发出声音，注意别让敌人察觉",
+        "recommendedActionList": [
+          "可去树屋或二楼帮忙防守打碎二楼的窗户，能快速回防，但声音比较明显，要注意别被敌人发现",
+          "可考虑去树屋或二楼帮队友防守击碎二楼窗户能快速回防，但会发出声音，注意别让敌人察觉"
+        ],
+        "phase": "中后期/回防残局"
+      }
+    },
+    {
+      "knowledgeId": "KN-亚海悬城-酒窖",
+      "mapName": "亚海悬城",
+      "regionName": "酒窖",
+      "normalizedRegionName": "酒窖",
+      "regionType": "连接区",
+      "sideScope": "双方",
+      "positioning": "酒窖是衔接多条路线的过渡节点，影响转点、回防和区域控制节奏。",
+      "landmarks": "A区大道；A区拱门",
+      "coordinate": "",
+      "attack": {
+        "typicalUse": "酒窖是个不错的埋伏点，可抓A区大道前压的敌人对手可能会提前瞄准或用道具清理，要注意",
+        "dangerDirections": "A区拱门；A区大道的拱门",
+        "keyAngles": "A区拱门；A区大道的拱门",
+        "goal": "控图、找信息、建立首轮对枪优势",
+        "recommendedActions": "1) 酒窖是个不错的埋伏点，可抓A区大道前压的敌人对手可能会提前瞄准或用道具清理，要注意；2) 酒窖可埋伏A区大道前压的敌人，但该区域是个常规点位，要注意被道具清理或提前瞄准；3) 清点/留意：A区拱门；A区大道的拱门",
+        "recommendedActionList": [
+          "酒窖是个不错的埋伏点，可抓A区大道前压的敌人对手可能会提前瞄准或用道具清理，要注意",
+          "酒窖可埋伏A区大道前压的敌人，但该区域是个常规点位，要注意被道具清理或提前瞄准",
+          "清点/留意：A区拱门；A区大道的拱门"
+        ],
+        "phase": "中前期/控图转点"
+      },
+      "defense": {
+        "typicalUse": "这里位置隐蔽，适合偷袭A区大道的敌人但空间狭小，撤退不便，要注意对方道具覆盖",
+        "dangerDirections": "A区大道",
+        "keyAngles": "A区大道",
+        "goal": "控图、反清、支援转点",
+        "recommendedActions": "1) 这里位置隐蔽，适合偷袭A区大道的敌人但空间狭小，撤退不便，要注意对方道具覆盖；2) 这个点位很隐蔽，适合偷袭A区大道的敌人但空间小、不好撤退，注意对方道具；3) 清点/留意：A区大道",
+        "recommendedActionList": [
+          "这里位置隐蔽，适合偷袭A区大道的敌人但空间狭小，撤退不便，要注意对方道具覆盖",
+          "这个点位很隐蔽，适合偷袭A区大道的敌人但空间小、不好撤退，注意对方道具",
+          "清点/留意：A区大道"
+        ],
+        "phase": "中前期/防守控图"
+      }
+    }
+  ]
+}

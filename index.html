@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALORANT 英雄推荐器 - Powered by OP.GG</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--bg-card:#13131a;--bg-hover:#1a1a24;--border:#2a2a35;--red:#ff4655;--red-dk:#cc3944;--txt:#ece8e1;--txt2:#8b8994;--dim:#5c5a65;--green:#0acf83;--gold:#f5c518;--rD:#ff4655;--rI:#43b581;--rC:#7289da;--rS:#faa61a;--chat-w:max(520px,min(50vw,720px))}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(255,70,85,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(255,70,85,.04) 0%,transparent 50%);z-index:-1;animation:bp 15s ease-in-out infinite alternate}
+@keyframes bp{to{transform:translate(-3%,-3%)}}
+.hdr{border-bottom:1px solid var(--border);padding:20px 0;backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;background:rgba(10,10,15,.85)}
+.hdr-in{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-i{width:36px;height:36px;background:var(--red);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff}
+.logo-t{font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.logo-t b{color:var(--red)}
+.badge{font-size:12px;color:var(--txt2);background:rgba(255,255,255,.05);padding:4px 12px;border-radius:4px;border:1px solid var(--border)}
+.wrap{max-width:1480px;margin:0 auto;padding:32px 24px;display:grid;grid-template-columns:320px minmax(0,1fr);gap:32px;align-items:start;transition:grid-template-columns .16s ease}
+.wrap.aside-collapsed{grid-template-columns:54px minmax(0,1fr)}
+body.chat-open::before{animation:none}
+body.chat-open .wrap{max-width:none;margin:0;padding-right:calc(var(--chat-w) + 56px);transition:none}
+body.chat-open .hdr{backdrop-filter:none}
+body.chat-open .hdr-in{max-width:none;margin:0;padding-right:calc(var(--chat-w) + 56px)}
+.main{min-width:0;order:2}
+/* 左侧功能说明栏 */
+.aside{order:1;position:sticky;top:96px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px 18px 22px;font-size:13px;line-height:1.65;color:var(--txt2);max-height:calc(100vh - 120px);overflow:auto;transition:.25s}
+.aside-toggle{width:100%;background:rgba(255,70,85,.08);border:1px solid rgba(255,70,85,.35);color:var(--red);border-radius:8px;padding:8px 10px;margin-bottom:14px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase}
+.aside-toggle:hover{background:rgba(255,70,85,.14);color:#fff}
+.aside.collapsed{padding:0;overflow:hidden;min-height:240px;display:flex;align-items:stretch;justify-content:center}
+.aside.collapsed .aside-body{display:none}
+.aside.collapsed .aside-toggle{height:240px;width:52px;margin:0;border:none;border-radius:12px;background:rgba(255,70,85,.1);writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:3px}
+.aside .as-tt{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.aside .as-tt::before{content:'';width:3px;height:14px;background:var(--red);border-radius:2px}
+.aside h4{font-size:14px;font-weight:700;color:var(--txt);letter-spacing:.5px;margin:18px 0 8px;display:flex;align-items:center;gap:8px}
+.aside h4::before{content:'';display:inline-block;width:18px;height:18px;border-radius:4px;background:rgba(255,70,85,.15);border:1px solid rgba(255,70,85,.4);color:var(--red);font-size:10px;font-weight:700;text-align:center;line-height:16px}
+.aside h4.f1::before{content:'1'}
+.aside h4.f2::before{content:'2'}
+.aside h4:first-of-type{margin-top:0}
+.aside .as-lb{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px}
+.aside p{margin:0 0 6px;color:var(--txt2)}
+.aside ul{list-style:none;padding:0;margin:4px 0 8px}
+.aside ul li{position:relative;padding-left:14px;margin-bottom:4px;color:var(--txt2)}
+.aside ul li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--red);border-radius:50%;opacity:.7}
+.aside b{color:var(--txt);font-weight:600}
+.aside .as-flow{margin-top:18px;padding:12px 14px;background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.25);border-radius:8px;font-size:12px;color:var(--txt);line-height:1.7}
+.aside .as-flow .as-flow-tt{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.aside hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+@media(max-width:1100px){.wrap,.wrap.aside-collapsed{grid-template-columns:1fr}.main{order:1}.aside{order:0;position:static;max-height:none}.aside.collapsed{min-height:48px}.aside.collapsed .aside-toggle{height:48px;width:100%;writing-mode:horizontal-tb;letter-spacing:1px}body.chat-open .wrap{max-width:1480px;margin:0 auto;padding-right:24px}body.chat-open .hdr-in{max-width:1280px;margin:0 auto;padding-right:24px}}
+.stit{font-size:18px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.stit::before{content:'';width:4px;height:18px;background:var(--red);border-radius:2px}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-bottom:40px}
+.mc{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:.25s}
+.mc:hover{border-color:rgba(255,70,85,.4);background:var(--bg-hover);transform:translateY(-2px)}
+.mc.on{border-color:var(--red);background:rgba(255,70,85,.08);box-shadow:0 0 20px rgba(255,70,85,.15)}
+.mc.on::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--red)}
+.mc.off{opacity:.45;background:rgba(255,255,255,.02)}
+.mc.off:hover{border-color:var(--border);transform:none}
+.mc.off .mn{color:var(--txt2)}
+.mtag{font-size:9px;font-weight:500;background:rgba(245,197,24,.15);color:var(--gold);padding:2px 6px;border-radius:3px;margin-left:6px;letter-spacing:.5px;vertical-align:middle}
+.mc{position:relative}
+.mn{font-size:16px;font-weight:600}.mnc{font-size:13px;color:var(--txt2);margin-top:2px}
+.tb{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:40px}
+.ts{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.sl{flex:1;min-width:100px;background:rgba(255,255,255,.03);border:1px dashed var(--border);border-radius:8px;padding:12px;text-align:center;position:relative}
+.sl-l{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.sl-c{min-height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.sl-c img{width:56px;height:56px;border-radius:8px;object-fit:cover}
+.sl-c .nm{font-size:13px;font-weight:600}
+.sl-c .rt{font-size:10px;padding:2px 8px;border-radius:3px;background:rgba(255,255,255,.08);color:var(--txt2)}
+.sl .x{position:absolute;top:4px;right:4px;background:var(--red);border:none;color:#fff;width:18px;height:18px;border-radius:50%;font-size:11px;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+.sl.f .x{display:flex}
+.sl-p{color:var(--dim);font-size:13px}
+/* 槽位：我 vs 队友 */
+.sl.me{border-style:solid;border-color:rgba(245,197,24,.45);background:linear-gradient(180deg,rgba(245,197,24,.06),rgba(255,255,255,.02))}
+.sl.me .sl-l{color:var(--gold)}
+.sl.me.f{box-shadow:0 0 0 1px rgba(245,197,24,.35) inset}
+.me-tag{font-size:10px;font-weight:700;background:var(--gold);color:#000;padding:2px 8px;border-radius:3px;letter-spacing:1px}
+/* 我的卡片下方的胜率徽章 */
+.sl-stat{display:flex;align-items:center;gap:4px;justify-content:center;flex-wrap:wrap;padding:6px 4px 0;border-top:1px dashed rgba(245,197,24,.2);margin-top:8px}
+.ss-v{font-size:13px;font-weight:700;color:var(--txt)}
+.ss-v.hi{color:var(--green)}.ss-v.lo{color:var(--red)}.ss-v.ne{color:var(--gold)}
+.ss-l{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.ss-sep{width:1px;height:10px;background:var(--border);margin:0 4px}
+/* 阵容里"我"的高亮 */
+.cag.mine{position:relative}
+.cag.mine img{border-color:var(--gold)!important;box-shadow:0 0 12px rgba(245,197,24,.4)}
+.cag-me{position:absolute;top:-6px;left:-6px;background:var(--gold);color:#000;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;letter-spacing:.5px;z-index:2}
+/* 槽位可点击提示 */
+.sl.tappable{cursor:pointer;transition:.2s}
+.sl.tappable:hover{border-color:rgba(255,70,85,.5);background:rgba(255,70,85,.04)}
+.sl.tappable.me:hover{border-color:var(--gold);background:rgba(245,197,24,.08)}
+/* 英雄选择器弹窗 */
+.md-pk{max-width:720px;width:95%}
+.md-pk input{margin-bottom:14px}
+.pk-grid{max-height:60vh;overflow-y:auto;padding-right:4px;margin:-4px -4px 12px}
+.pk-group{margin-bottom:14px}
+.pk-gh{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin:0 4px 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.pk-gh[data-r="Duelist"]{color:var(--rD)}.pk-gh[data-r="Initiator"]{color:var(--rI)}.pk-gh[data-r="Controller"]{color:var(--rC)}.pk-gh[data-r="Sentinel"]{color:var(--rS)}
+.pk-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px}
+.pk-i{position:relative;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:.15s}
+.pk-i:hover{background:rgba(255,70,85,.08);border-color:var(--red);transform:translateY(-1px)}
+.pk-i img{width:44px;height:44px;border-radius:6px;object-fit:cover}
+.pk-i .pk-n{font-size:12px;font-weight:500;color:var(--txt)}
+.pk-i .pk-wr{font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;background:rgba(255,255,255,.06)}
+.pk-i .pk-wr.hi{color:var(--green);background:rgba(10,207,131,.1)}
+.pk-i .pk-wr.lo{color:var(--red);background:rgba(255,70,85,.1)}
+.pk-i .pk-wr.ne{color:var(--gold);background:rgba(245,197,24,.1)}
+.pk-i.cur{border-color:var(--gold);background:rgba(245,197,24,.1);box-shadow:0 0 12px rgba(245,197,24,.25)}
+.pk-i.cur::after{content:'当前';position:absolute;top:-5px;right:-5px;background:var(--gold);color:#000;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px}
+.pk-i.tk{opacity:.3;cursor:not-allowed;filter:grayscale(.7)}
+.pk-i.tk:hover{transform:none;background:rgba(255,255,255,.04);border-color:var(--border)}
+.pk-i.tk::after{content:'已选';position:absolute;top:-5px;right:-5px;background:var(--dim);color:#fff;font-size:9px;padding:1px 5px;border-radius:3px}
+/* 我的特工·数据卡 */
+.myc{background:linear-gradient(135deg,rgba(245,197,24,.06),rgba(255,255,255,.02));border:1px solid rgba(245,197,24,.3);border-radius:12px;padding:20px 24px;margin-bottom:20px;animation:fu .3s ease}
+.myc-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.myc-hl{display:flex;align-items:center;gap:14px}
+.myc-hl img{width:56px;height:56px;border-radius:10px;border:2px solid var(--gold);object-fit:cover;box-shadow:0 0 16px rgba(245,197,24,.3)}
+.myc-nm{font-size:20px;font-weight:700;color:var(--txt);letter-spacing:1px}
+.myc-rl{font-size:12px;margin-top:2px}
+.myc-stats{display:flex;align-items:center;justify-content:space-around;gap:8px;flex-wrap:wrap;padding:14px 8px;background:rgba(0,0,0,.2);border-radius:8px;margin-bottom:12px}
+.myc-st{flex:1;min-width:80px;text-align:center}
+.myc-sv{font-size:24px;font-weight:700;color:var(--txt);letter-spacing:.5px;line-height:1.2}
+.myc-sv.hi{color:var(--green)}.myc-sv.lo{color:var(--red)}.myc-sv.ne{color:var(--gold)}
+.myc-sl{font-size:11px;color:var(--txt2);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+.myc-sp{width:1px;height:36px;background:var(--border)}
+.myc-bar{position:relative;width:100%;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:12px}
+.myc-bf{height:100%;border-radius:3px;background:var(--txt2);transition:width .8s cubic-bezier(.2,.8,.4,1)}
+.myc-bf.hi{background:linear-gradient(90deg,var(--gold),var(--green))}
+.myc-bf.lo{background:linear-gradient(90deg,var(--red-dk),var(--red))}
+.myc-bf.ne{background:var(--gold)}
+.myc-bm{position:absolute;left:50%;top:-2px;width:2px;height:10px;background:var(--txt2);opacity:.6}
+.myc-tip{font-size:13px;color:var(--txt2);padding:10px 14px;background:rgba(255,255,255,.03);border-radius:6px;border-left:3px solid var(--gold);line-height:1.5}
+.myc-empty{text-align:center;color:var(--txt2);font-size:13px;padding:14px;background:rgba(255,255,255,.02);border-radius:6px}
+@media(max-width:768px){.myc-stats{padding:10px 4px}.myc-sv{font-size:18px}.myc-sp{display:none}.myc-st{min-width:60px}}
+.ar{display:flex;gap:12px;margin-top:16px;align-items:center}
+.sw{flex:1;position:relative}
+.sw input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:8px;padding:10px 14px 10px 36px;color:var(--txt);font-family:inherit;font-size:14px;outline:none;transition:.2s}
+.sw input:focus{border-color:var(--red)}
+.sw::before{content:'\1F50D';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.5}
+.dd{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;max-height:240px;overflow-y:auto;z-index:50;display:none}
+.dd.sh{display:block}
+.di{display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;transition:.15s}
+.di:hover{background:rgba(255,255,255,.06)}
+.di img{width:32px;height:32px;border-radius:4px}
+.di .dn{font-size:14px;font-weight:500}
+.di .dr{font-size:12px;color:var(--txt2);margin-left:auto}
+.ba{background:var(--red);color:#fff;border:none;padding:12px 32px;border-radius:8px;font-family:inherit;font-size:15px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.25s;white-space:nowrap}
+.ba:hover{background:var(--red-dk);box-shadow:0 0 24px rgba(255,70,85,.4)}
+.ba:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.ba.ld{position:relative;color:transparent}
+.ba.ld::after{content:'';position:absolute;width:20px;height:20px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;top:50%;left:50%;margin:-10px 0 0 -10px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.cc{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px;transition:.25s;animation:fu .4s ease forwards;opacity:0}
+.cc:hover{border-color:rgba(255,70,85,.3);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.cc.r1{border-color:var(--gold);background:rgba(245,197,24,.04)}
+.cc.r2{border-color:#c0c0c0;background:rgba(192,192,192,.03)}
+.cc.r3{border-color:#cd7f32;background:rgba(205,127,50,.03)}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.ct{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}
+.cr{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;background:rgba(255,255,255,.08);color:var(--txt2);flex-shrink:0}
+.cc.r1 .cr{background:var(--gold);color:#000}
+.cc.r2 .cr{background:#c0c0c0;color:#000}
+.cc.r3 .cr{background:#cd7f32;color:#000}
+.ca{display:flex;gap:10px;flex-wrap:wrap;flex:1;justify-content:center}
+.cag{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
+.cag.lk::after{content:'\2713';position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--green);border-radius:50%;font-size:11px;color:#fff;display:flex;align-items:center;justify-content:center}
+.cag img{width:48px;height:48px;border-radius:8px;border:2px solid var(--border);object-fit:cover;transition:.2s}
+.cag:hover img{transform:scale(1.1)}
+.cag.sg img{border-color:var(--red)}
+.cag.sg.lk img{border-color:var(--green)}
+.cag .an{font-size:11px;font-weight:500;color:var(--txt2)}
+.cag .ar{font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(255,255,255,.06)}
+.ar[data-r="Duelist"]{color:var(--rD)}.ar[data-r="Initiator"]{color:var(--rI)}.ar[data-r="Controller"]{color:var(--rC)}.ar[data-r="Sentinel"]{color:var(--rS)}
+.cs{display:flex;gap:24px;align-items:center;flex-shrink:0}
+.si{text-align:center}
+.sv{font-size:20px;font-weight:700}.sv.hi{color:var(--green)}.sv.lo{color:var(--red)}
+.sl2{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.wb{width:100%;height:4px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:16px;overflow:hidden}
+.wf{height:100%;border-radius:2px;transition:width .6s;background:var(--txt2)}
+.wf.hi{background:var(--green)}.wf.lo{background:var(--red)}.wf.ne{background:var(--gold)}
+.tip{margin-top:12px;font-size:13px;color:var(--txt2);padding:8px 12px;background:rgba(255,255,255,.03);border-radius:6px;border-left:3px solid var(--red)}
+.tip b{color:var(--txt)}
+/* 数据置信度警示条 */
+.cf{margin-bottom:20px;padding:14px 18px;border-radius:10px;border:1px solid;display:flex;align-items:flex-start;gap:14px;animation:fu .3s ease;line-height:1.55}
+.cf.t1{background:rgba(10,207,131,.06);border-color:rgba(10,207,131,.35);color:var(--txt)}
+.cf.t2,.cf.t3{background:rgba(245,197,24,.07);border-color:rgba(245,197,24,.4);color:var(--txt)}
+.cf.t4{background:rgba(255,70,85,.07);border-color:rgba(255,70,85,.4);color:var(--txt)}
+.cf-ic{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;font-family:Arial,sans-serif}
+.cf.t1 .cf-ic{background:var(--green);color:#000}
+.cf.t2 .cf-ic,.cf.t3 .cf-ic{background:var(--gold);color:#000}
+.cf.t4 .cf-ic{background:var(--red);color:#fff}
+.cf-bd{flex:1;font-size:13px}
+.cf-tt{font-size:13px;font-weight:700;letter-spacing:.5px;margin-bottom:4px;text-transform:uppercase}
+.cf.t1 .cf-tt{color:var(--green)}
+.cf.t2 .cf-tt,.cf.t3 .cf-tt{color:var(--gold)}
+.cf.t4 .cf-tt{color:var(--red)}
+.cf-ds{font-size:13px;color:var(--txt2)}
+.cf-ds b{color:var(--txt)}
+.cf-meta{margin-top:6px;font-size:11px;color:var(--dim);letter-spacing:.5px}
+/* 卡片上的样本数小标签 */
+.cs-sample{font-size:10px;color:var(--dim);margin-top:2px;text-transform:uppercase;letter-spacing:1px}
+/* 推荐 tip 上的置信度小尾巴 */
+.tip .tip-meta{display:inline-block;margin-left:8px;font-size:11px;color:var(--dim);font-weight:400}
+.nr{text-align:center;padding:60px 20px;color:var(--dim)}.nr .ic{font-size:48px;margin-bottom:16px;opacity:.3}.nr p{font-size:16px}
+.ld2{text-align:center;padding:60px 20px;color:var(--txt2)}
+.ls{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--red);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 16px}
+.sg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:40px}
+.sc2{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px;display:flex;align-items:center;gap:12px;transition:.2s}
+.sc2:hover{border-color:rgba(255,70,85,.3)}
+.sc2 img{width:40px;height:40px;border-radius:6px}
+.sc2 .inf{flex:1}.sc2 .sn{font-size:14px;font-weight:600}.sc2 .sv2{font-size:12px;color:var(--txt2);margin-top:2px}.sc2 .sv2 .v{color:var(--txt);font-weight:600}
+.rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.rm{font-size:13px;color:var(--txt2)}.rm span{color:var(--red);font-weight:600}
+.ft{text-align:center;padding:24px;color:var(--dim);font-size:12px;border-top:1px solid var(--border);margin-top:40px}
+.ft a{color:var(--red);text-decoration:none}
+.gear{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--txt2);width:32px;height:32px;border-radius:6px;cursor:pointer;font-size:16px;display:inline-flex;align-items:center;justify-content:center;transition:.2s;margin-left:8px}
+.gear:hover{color:var(--txt);border-color:var(--red)}
+.gear.ok{color:var(--green);border-color:var(--green)}
+.mdk{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.mdk.sh{display:flex}
+.md{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;width:90%;max-width:520px;animation:fu .2s ease}
+.md h3{font-size:16px;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;color:var(--red)}
+.md p{font-size:13px;color:var(--txt2);margin-bottom:14px;line-height:1.6}
+.md p code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:3px;font-size:12px;color:var(--gold)}
+.md input{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--txt);font-family:inherit;font-size:13px;outline:none;margin-bottom:12px}
+.md input:focus{border-color:var(--red)}
+.md .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.md .b2{background:transparent;border:1px solid var(--border);color:var(--txt2);padding:8px 16px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px}
+.md .b2:hover{color:var(--txt)}
+.md .b1{background:var(--red);border:none;color:#fff;padding:8px 16px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600}
+.md .b1:hover{background:var(--red-dk)}
+.md .ts2{font-size:12px;margin-top:8px;padding:8px;border-radius:4px;display:none}
+.md .ts2.ok{display:block;background:rgba(10,207,131,.1);color:var(--green);border:1px solid rgba(10,207,131,.3)}
+.md .ts2.bad{display:block;background:rgba(255,70,85,.1);color:var(--red);border:1px solid rgba(255,70,85,.3)}
+.chatbot{position:fixed;right:24px;bottom:24px;z-index:180;font-family:inherit}
+.chatbot.open{top:92px;right:24px;bottom:36px;width:var(--chat-w);min-width:0;contain:layout paint}
+.chat-toggle{width:58px;height:58px;border-radius:50%;border:1px solid var(--red);background:var(--red);color:#fff;font-weight:700;letter-spacing:1px;cursor:pointer;box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.chat-panel{display:none;width:380px;height:540px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.55)}
+.chatbot.open .chat-panel{display:flex;flex-direction:column;width:100%;height:100%;box-shadow:none}.chatbot.open .chat-toggle{display:none}
+/* 悬浮窄面板模式 */
+.chatbot.open.float-mode{width:380px;min-width:380px}
+.chatbot.open.float-mode .chat-panel{border-radius:14px;border:1px solid var(--border);box-shadow:0 18px 60px rgba(0,0,0,.55)}
+body.chat-open.chat-float .wrap{max-width:1480px;padding-right:24px}
+body.chat-open.chat-float .hdr-in{max-width:1280px;padding-right:24px}
+.chat-mode-btn{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--txt2);border-radius:6px;padding:5px 9px;font-family:inherit;font-size:12px;cursor:pointer;white-space:nowrap}
+.chat-mode-btn:hover{color:var(--txt);border-color:var(--red)}
+.chat-head{padding:16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:rgba(255,70,85,.04)}
+.chat-title{font-size:16px;font-weight:700;color:var(--txt);letter-spacing:.8px}.chat-sub{font-size:12px;color:var(--txt2);margin-top:2px}.chat-actions{display:flex;align-items:center;gap:8px}.chat-clear{background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--txt2);border-radius:6px;padding:5px 9px;font-family:inherit;font-size:12px;cursor:pointer}.chat-clear:hover{color:var(--txt);border-color:var(--red)}.chat-close{background:transparent;border:none;color:var(--txt2);font-size:24px;cursor:pointer;line-height:1}
+.chat-msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px;contain:layout paint}.chat-msg{max-width:88%;padding:10px 12px;border-radius:10px;font-size:13px;line-height:1.55;white-space:pre-wrap}.chat-msg.user{align-self:flex-end;background:var(--red);color:#fff}.chat-msg.bot{align-self:flex-start;background:rgba(255,255,255,.05);color:var(--txt);border:1px solid var(--border)}
+.chat-quick{display:flex;gap:6px;padding:10px 12px;border-top:1px solid var(--border);overflow:auto}.chat-quick button{white-space:nowrap;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--txt2);border-radius:999px;padding:6px 10px;font-family:inherit;font-size:12px;cursor:pointer}.chat-quick button:hover{color:var(--txt);border-color:var(--red)}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border)}.chat-input input{flex:1;min-width:0;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;color:var(--txt);padding:10px;font-family:inherit;font-size:13px;outline:none}.chat-input input:focus{border-color:var(--red)}.chat-input button{background:var(--red);border:none;border-radius:8px;color:#fff;padding:0 14px;font-family:inherit;cursor:pointer}
+@media(max-width:768px){.wrap{padding:16px}.mg{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}.ts{flex-direction:column}.cs{flex-direction:column;gap:8px}.ca{gap:6px}.cag img{width:40px;height:40px}.hdr-in{flex-direction:column;gap:8px}.chatbot{right:14px;bottom:14px}.chatbot.open{top:84px;right:14px;bottom:14px;width:calc(100vw - 28px);min-width:0}.chat-panel{width:calc(100vw - 28px);height:70vh}}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+/* Toast 提示 */
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--bg-card);border:1px solid var(--border);color:var(--txt);padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;z-index:999;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.toast.sh{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.toast.warn{border-color:rgba(245,197,24,.5);background:rgba(245,197,24,.1);color:var(--gold)}
+/* 新手引导 Tour */
+.tour-overlay{position:fixed;inset:0;z-index:900;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.tour-overlay.sh{pointer-events:auto;opacity:1;visibility:visible;transition:opacity .3s,visibility 0s 0s}
+.tour-overlay .tour-bg{position:absolute;inset:0;background:rgba(0,0,0,.65)}
+.tour-highlight{position:absolute;border-radius:12px;box-shadow:0 0 0 4px var(--red),0 0 40px rgba(255,70,85,.35);z-index:901;pointer-events:none;transition:all .35s cubic-bezier(.4,0,.2,1)}
+.tour-popup{position:absolute;z-index:902;background:var(--bg-card);border:1px solid var(--red);border-radius:12px;padding:20px 24px;max-width:320px;box-shadow:0 12px 48px rgba(0,0,0,.6);animation:fu .3s ease}
+.tour-popup .tour-step{font-size:11px;color:var(--red);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.tour-popup .tour-title{font-size:16px;font-weight:700;color:var(--txt);margin-bottom:8px}
+.tour-popup .tour-desc{font-size:13px;color:var(--txt2);line-height:1.6;margin-bottom:16px}
+.tour-popup .tour-btns{display:flex;gap:8px;justify-content:flex-end}
+.tour-popup .tour-next{background:var(--red);border:none;color:#fff;padding:8px 18px;border-radius:6px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.tour-popup .tour-next:hover{background:var(--red-dk)}
+.tour-popup .tour-skip{background:transparent;border:1px solid var(--border);color:var(--txt2);padding:8px 14px;border-radius:6px;font-family:inherit;font-size:13px;cursor:pointer}
+.tour-popup .tour-skip:hover{color:var(--txt)}
+.tour-dots{display:flex;gap:6px;justify-content:center;margin-top:12px}
+.tour-dot{width:8px;height:8px;border-radius:50%;background:var(--border)}.tour-dot.on{background:var(--red)}
+.mapk{display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px;animation:fu .35s ease}
+.mapk.sh{display:block}
+.mapk-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+.mapk-title{font-size:18px;font-weight:700;color:var(--txt);letter-spacing:1px}
+.mapk-sub{font-size:12px;color:var(--txt2);margin-top:4px;line-height:1.5}
+.mapk-grid{display:grid;grid-template-columns:minmax(360px,1fr) 360px;gap:18px;align-items:start}
+.mapk-stage{position:relative;width:100%;background:#07070b;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.28)}
+.mapk-stage img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.mapk-svg{position:absolute;inset:0;width:100%;height:100%}
+.mapk-r{fill:rgba(255,70,85,.18);stroke:var(--red);stroke-width:2;vector-effect:non-scaling-stroke;cursor:pointer;transition:.15s}
+.mapk-r[data-type="包点"]{fill:rgba(255,70,85,.2);stroke:var(--red)}
+.mapk-r[data-type="入口"]{fill:rgba(245,197,24,.18);stroke:var(--gold)}
+.mapk-r[data-type="连接区"],.mapk-r[data-type="中路"]{fill:rgba(114,137,218,.18);stroke:var(--rC)}
+.mapk-r:hover,.mapk-r.on{fill:rgba(255,255,255,.22);stroke:#fff;stroke-width:3;filter:drop-shadow(0 0 6px rgba(255,255,255,.45))}
+.mapk-label{font-size:13px;font-weight:700;fill:#fff;paint-order:stroke;stroke:#000;stroke-width:3px;pointer-events:none}
+.mapk-panel{border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03);min-height:320px;overflow:hidden}
+.mapk-empty{padding:22px;color:var(--txt2);font-size:13px;line-height:1.7}
+.mapk-info{padding:16px;border-bottom:1px solid var(--border);background:rgba(255,70,85,.05)}
+.mapk-name{font-size:18px;font-weight:700;color:var(--txt);margin-bottom:6px}
+.mapk-tags{display:flex;gap:6px;flex-wrap:wrap}
+.mapk-tag{font-size:11px;color:var(--txt2);background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:999px;padding:2px 8px}
+.mapk-body{max-height:420px;overflow:auto;padding:14px 16px}
+.mapk-group{margin-bottom:14px}
+.mapk-gh{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase}
+.mapk-item{font-size:13px;color:var(--txt2);line-height:1.65;padding:8px 10px;background:rgba(0,0,0,.18);border-left:3px solid var(--border);border-radius:6px;margin-bottom:6px}
+.mapk-item b{color:var(--txt);font-weight:600}
+.mapk-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.mapk-chip{font-size:11px;border:1px solid rgba(255,70,85,.35);color:var(--red);background:rgba(255,70,85,.08);border-radius:999px;padding:4px 9px;cursor:pointer}
+.mapk-chip:hover{background:rgba(255,70,85,.14);color:#fff}
+.pcand{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(255,255,255,.02));border:1px solid rgba(245,197,24,.32);border-radius:12px;padding:18px 20px;margin:18px 0 22px;animation:fu .35s ease}
+.pcand-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.pcand-title{font-size:16px;font-weight:700;color:var(--txt);letter-spacing:1px}.pcand-sub{font-size:12px;color:var(--txt2);margin-top:3px;line-height:1.5}.pcand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.pcand-card{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.18);border:1px solid var(--border);border-radius:9px;padding:10px}.pcand-card img{width:42px;height:42px;border-radius:7px;object-fit:cover}.pcand-n{font-size:14px;font-weight:700;color:var(--txt)}.pcand-meta{font-size:11px;color:var(--txt2);line-height:1.45;margin-top:2px}.pcand-rank{width:22px;height:22px;border-radius:5px;background:var(--gold);color:#000;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}.pcand-w{color:var(--gold);font-weight:700}
+@media(max-width:980px){.mapk-grid{grid-template-columns:1fr}.mapk-panel{min-height:auto}}
+</style>
+</head>
+<body>
+<div id="TOUR_OVERLAY" class="tour-overlay"><div class="tour-bg"></div><div id="TOUR_HL" class="tour-highlight"></div><div id="TOUR_POPUP" class="tour-popup"></div></div>
+<div class="hdr">
+  <div class="hdr-in">
+    <div class="logo"><div class="logo-i">V</div><div class="logo-t"><b>VALORANT</b> PICKER</div></div>
+    <div class="badge">Data by OP.GG<button class="gear" id="GR" onclick="oM()" title="代理设置">&#9881;</button></div>
+  </div>
+</div>
+<div class="mdk" id="MDK">
+  <div class="md">
+    <h3>代理设置</h3>
+    <p>如果直连 OP.GG 总是失败，可填入你自部署的反代地址（推荐 <b>Cloudflare Workers</b>，免费、5 分钟搞定）。<br>详见工作区 <code>cloudflare-worker.js</code> 文件里的部署说明。</p>
+    <input type="text" id="PXI" placeholder="https://xxx.workers.dev  （留空=不使用）" autocomplete="off">
+    <div class="ts2" id="TS2"></div>
+    <div class="row">
+      <button class="b2" onclick="tP()">测试连通</button>
+      <button class="b2" onclick="cM()">取消</button>
+      <button class="b1" onclick="sP()">保存</button>
+    </div>
+  </div>
+</div>
+<!-- 英雄选择器弹窗 -->
+<div class="mdk" id="PKR" onclick="if(event.target.id==='PKR')closePicker()">
+  <div class="md md-pk">
+    <h3 id="PK_TITLE">选择特工</h3>
+    <input type="text" id="PK_Q" placeholder="搜索英雄..." autocomplete="off" oninput="renderPicker()">
+    <div class="pk-grid" id="PK_GRID"></div>
+    <div class="row">
+      <button class="b2" onclick="pickerClear()">清空此槽</button>
+      <button class="b2" onclick="closePicker()">取消</button>
+    </div>
+  </div>
+</div>
+<div class="wrap" id="WRAP">
+  <div class="main">
+    <div class="stit">选择地图</div>
+    <div class="mg" id="MG"></div>
+    <div class="stit">你的队伍</div>
+    <div class="tb">
+      <div class="ts" id="TS"></div>
+      <div class="ar">
+        <div class="sw">
+          <input type="text" id="AS" placeholder="搜索特工中文名（如：捷风、奇乐、零）..." autocomplete="off">
+          <div class="dd" id="DD"></div>
+        </div>
+        <button class="ba" id="BA" onclick="go()" disabled>分析推荐</button>
+      </div>
+    </div>
+    <!-- 我的特工 · 数据卡 -->
+    <div id="MYC"></div>
+    <div id="MAPK" class="mapk"></div>
+    <div id="RA"></div>
+  </div>
+  <aside class="aside" id="ASIDE">
+    <button class="aside-toggle" id="ASIDE_TOGGLE" onclick="toggleAside()">收起说明</button>
+    <div class="aside-body">
+    <div class="as-tt">功能说明</div>
+
+    <h4 class="f1">阵容补位推荐</h4>
+    <div class="as-lb">解决的问题</div>
+    <p>队友先锁了英雄，玩家不确定自己该补什么位置、选什么特工最合适。</p>
+    <div class="as-lb">工作方式</div>
+    <ul>
+      <li>玩家把队友已选的特工<b>点击锁定</b></li>
+      <li>系统从该地图历史对局中筛选出<b>包含队友所选英雄的高胜率阵容</b></li>
+      <li>反推出当前队伍<b>缺失的位置</b>（决斗 / 控场 / 先锋 / 哨位）</li>
+      <li>给出<b>推荐补位特工</b>及候补选择</li>
+    </ul>
+    <p style="font-size:12px;color:var(--dim);margin-top:6px">推荐结果不依赖主观判断，全部基于真实对局胜率倒推。</p>
+
+    <hr>
+
+    <h4 class="f2">地图英雄数据榜</h4>
+    <div class="as-lb">解决的问题</div>
+    <p>玩家想知道：这张地图当前版本谁强？自己常用的英雄在这张图能不能打？</p>
+    <div class="as-lb">提供的数据</div>
+    <ul>
+      <li><b>TOP 5 强势特工</b>：当前地图胜率最高的五位英雄</li>
+      <li><b>单英雄胜率与出场率</b>：判断英雄是真的强势，还是仅仅热门</li>
+      <li><b>完整阵容组合排行</b>：列出该地图最强的五人阵容搭配</li>
+    </ul>
+    <p style="font-size:12px;color:var(--dim);margin-top:6px">数据来源：OP.GG 钻石及以上段位最近版本竞技对局统计。</p>
+
+    <hr>
+
+    <h4 class="f2" style="background:none">「我」的特工数据卡</h4>
+    <div class="as-lb">解决的问题</div>
+    <p>选完自己英雄后，立刻想知道这把"我能不能打"，而不用等推荐列表才知道答案。</p>
+    <div class="as-lb">提供的数据</div>
+    <ul>
+      <li><b>金色「我」槽位</b>：5 个槽位中第一个为「我」，与队友槽位区分</li>
+      <li><b>胜率 / 选用率 / KDA</b>：当前地图下的核心三项指标</li>
+      <li><b>同职业排名 + 全英雄排名</b>：直观看出该英雄在地图里的强弱档位</li>
+      <li><b>胜率刻度条</b>：以 50% 为平衡线，绿/红/金提示强势 / 弱势 / 中庸</li>
+    </ul>
+
+    <hr>
+
+    <h4 class="f2" style="background:none">推荐置信度提示</h4>
+    <div class="as-lb">解决的问题</div>
+    <p>避免「锁了一组冷门组合，仍然给一份看似精准但实际样本极少」的误导。</p>
+    <div class="as-lb">四档可信度</div>
+    <ul>
+      <li><b style="color:var(--green)">绿色 · 完全匹配</b>：找到了完全包含所有锁定的真实阵容</li>
+      <li><b style="color:var(--gold)">黄色 · 部分匹配</b>：未能全匹配时，优先寻找包含尽可能多已锁定特工的阵容</li>
+      <li><b style="color:var(--gold)">黄色 · 职业搭配</b>：具体英雄罕见，按职业组合反推</li>
+      <li><b style="color:var(--red)">红色 · 仅供参考</b>：组合极冷门，仅展示该图整体 TOP</li>
+    </ul>
+
+    <hr>
+
+    <div class="as-tt" style="margin-top:6px">推荐策略详解</div>
+    <div class="as-lb">分析输入</div>
+    <ul>
+      <li><b>地图 ID</b>：决定调用哪张图的对局池</li>
+      <li><b>已锁定的特工集合</b>（含「我」+ 队友，最多 5 个）</li>
+    </ul>
+
+    <div class="as-lb">数据源（两路并发）</div>
+    <ul>
+      <li><b>阵容池</b>：<code style="font-size:11px;color:var(--gold);background:rgba(255,255,255,.05);padding:1px 4px;border-radius:3px">list_agent_compositions_for_map</code> — 该地图所有 5 人组合的胜率与出场数</li>
+      <li><b>单英雄统计</b>：<code style="font-size:11px;color:var(--gold);background:rgba(255,255,255,.05);padding:1px 4px;border-radius:3px">list_agent_statistics</code> — 单英雄胜率 / 选用率 / KDA</li>
+    </ul>
+
+    <div class="as-lb">4 级降级匹配（核心算法）</div>
+    <p style="font-size:12px;color:var(--dim);margin-bottom:6px">从严格到宽松依次尝试，命中即停止：</p>
+    <ul>
+      <li><b style="color:var(--green)">T1 严格全匹配</b>：阵容必须<b>同时包含全部锁定英雄</b>。最准但最容易没数据。</li>
+      <li><b style="color:var(--gold)">T2 最大锁定命中</b>：T1 无结果时，按包含锁定特工数量从多到少逐层匹配，优先保留更多队友选择。</li>
+      <li><b style="color:var(--gold)">T3 职业搭配</b>：T2 仍无结果时，把锁定降级为<b>职业多重集合</b>（如 1 决斗 + 1 控场），匹配职业组合一致的阵容。</li>
+      <li><b style="color:var(--red)">T4 整图兜底</b>：以上全失败时，展示<b>该地图整体胜率最高</b>的前 20 个阵容仅供参考。</li>
+    </ul>
+
+    <div class="as-lb">排序与候补</div>
+    <ul>
+      <li>每档命中后均按<b>胜率降序</b>取 TOP 20 阵容</li>
+      <li>从每个推荐阵容中扣除已锁定，剩下的位置即为<b>建议补位</b></li>
+      <li>第 1 名标「推荐选择」，第 2~3 名标「可选」</li>
+      <li>每条推荐后附<b>样本场次</b>，场次少 = 慎用</li>
+    </ul>
+
+    <div class="as-lb">为什么这样设计</div>
+    <p style="font-size:12px;color:var(--dim)">VALORANT 阵容长尾极重 — 多数 5 人组合在单图样本不足 50 场。直接强匹配会"找不到结果"或"基于 3 场对局给推荐"，因此采用<b style="color:var(--txt)">分级降级 + 置信度透明化</b>：宁可告诉你"这是降级结果"，也不假装精确。</p>
+
+    <div class="as-flow">
+      <div class="as-flow-tt">使用流程</div>
+      选择地图 → 点击「我」槽位选自己 → 锁定队友已选英雄 → 点击「分析推荐」→ 查看置信度 + 补位建议 + 地图数据榜
+    </div>
+    </div>
+  </aside>
+</div>
+<div id="TOAST" class="toast"></div>
+<div class="ft">Powered by <a href="https://op.gg" target="_blank">OP.GG</a> &middot; 数据仅供参考</div>
+<div id="CHATBOT" class="chatbot">
+  <button id="CHAT_TOGGLE" class="chat-toggle" title="阵容教练">AI</button>
+  <div id="CHAT_PANEL" class="chat-panel">
+    <div class="chat-head">
+      <div><div class="chat-title">阵容教练</div><div class="chat-sub">解释推荐逻辑与补位建议</div></div>
+      <div class="chat-actions"><button id="CHAT_MODE" class="chat-mode-btn" title="切换面板大小">悬浮</button><button id="CHAT_CLEAR" class="chat-clear" title="清空对话">清空</button><button id="CHAT_CLOSE" class="chat-close" title="关闭">&times;</button></div>
+    </div>
+    <div id="CHAT_MSGS" class="chat-msgs"></div>
+    <div class="chat-quick">
+      <button data-q="我这套阵容缺什么？">阵容缺口</button>
+      <button data-q="为什么推荐这个英雄？">推荐原因</button>
+      <button data-q="给我一套进攻方思路">进攻思路</button>
+      <button data-q="新手应该选谁？">新手建议</button>
+    </div>
+    <div class="chat-input">
+      <input id="CHAT_INPUT" placeholder="问问阵容教练..." autocomplete="off">
+      <button id="CHAT_SEND">发送</button>
+    </div>
+  </div>
+</div>
+<script>
+// Toast 提示
+let _toastTimer=0;
+function showToast(msg,type='warn',duration=2800){
+  const el=document.getElementById('TOAST');if(!el)return;
+  el.textContent=msg;el.className='toast'+(type?' '+type:'');
+  clearTimeout(_toastTimer);
+  requestAnimationFrame(()=>{el.classList.add('sh');});
+  _toastTimer=setTimeout(()=>{el.classList.remove('sh');},duration);
+}
+const RL={Duelist:'决斗',Initiator:'先锋',Controller:'控场',Sentinel:'守卫'};
+// locked: 长度固定为 5 的槽位数组；locked[0] 是"我"，locked[1..4] 是队友；空槽用 null
+let selMap=null,locked=[null,null,null,null,null];
+// 当前地图英雄统计（go 后填充），用于在"我"的卡片上展示胜率
+let lastStats={};
+let mapKnowledgeData=null;
+let mapFrameworkData=null;
+let currentMapRegion=null;
+const MIN_COMP_SAMPLE=30;
+const BAYES_PRIOR_GAMES=50;
+const BAYES_PRIOR_WR=50;
+// 把所有非空英雄取出来（兼容原来的 .includes/.length 逻辑）
+function lockedNames(){return locked.filter(Boolean);}
+function init(){rM();rS();sS();syncGear();rMyCard();renderMapKnowledgePanel();initMapKnowledge();initChatbot();restoreAside();}
+function restoreAside(){
+  const collapsed=localStorage.getItem('vp_aside_collapsed')==='1';
+  setAside(collapsed);
+}
+function setAside(collapsed){
+  const aside=document.getElementById('ASIDE');
+  const wrap=document.getElementById('WRAP');
+  const btn=document.getElementById('ASIDE_TOGGLE');
+  if(!aside||!wrap||!btn)return;
+  aside.classList.toggle('collapsed',collapsed);
+  wrap.classList.toggle('aside-collapsed',collapsed);
+  btn.textContent=collapsed?'展开说明':'收起说明';
+  localStorage.setItem('vp_aside_collapsed',collapsed?'1':'0');
+}
+function toggleAside(){setAside(!document.getElementById('ASIDE')?.classList.contains('collapsed'));}
+// 代理设置弹窗相关
+function oM(){document.getElementById('PXI').value=getCustomProxy();document.getElementById('TS2').className='ts2';document.getElementById('TS2').textContent='';document.getElementById('MDK').classList.add('sh');}
+function cM(){document.getElementById('MDK').classList.remove('sh');}
+function sP(){
+  const v=document.getElementById('PXI').value.trim();
+  if(v&&!/^https?:\/\//i.test(v)){tsMsg('请填入完整 URL（含 https://）','bad');return;}
+  if(v)localStorage.setItem(CUSTOM_PROXY_KEY,v);else localStorage.removeItem(CUSTOM_PROXY_KEY);
+  // 清掉粘性端点选择，下次走最新顺序
+  sessionStorage.removeItem(CACHE_PREFIX+'ok_ep');
+  syncGear();cM();
+}
+async function tP(){
+  const v=document.getElementById('PXI').value.trim();
+  if(!v){tsMsg('请先填入代理 URL','bad');return;}
+  tsMsg('测试中...','ok');
+  try{
+    const r=await fetch(v,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/list'})});
+    if(!r.ok){tsMsg('返回 HTTP '+r.status+'，代理工作但上游可能异常','bad');return;}
+    const t=await r.text();
+    if(t.includes('result')||t.includes('tools'))tsMsg('✓ 连通正常，可以保存','ok');
+    else tsMsg('返回内容异常: '+t.slice(0,80),'bad');
+  }catch(e){tsMsg('连接失败: '+e.message,'bad');}
+}
+function tsMsg(t,c){const el=document.getElementById('TS2');el.textContent=t;el.className='ts2 '+c;}
+function syncGear(){const g=document.getElementById('GR');if(!g)return;if(getCustomProxy())g.classList.add('ok');else g.classList.remove('ok');g.title=getCustomProxy()?'已配置代理: '+getCustomProxy():'代理设置';}
+function rM(){
+  const g=document.getElementById('MG');
+  // active=true 表示当前竞技图池有数据；false 表示已轮换出/暂无数据
+  const MAPS=[
+    ['7EAECC1B-4337-BBF6-6AB9-04B8F06B3319','Ascent','亚海悬城',true],
+    ['D960549E-485C-E861-8D71-AA9D1AED12A2','Split','霓虹町',true],
+    ['B529448B-4D60-346E-E89E-00A4C527A405','Fracture','裂变峡谷',true],
+    ['2FB9A4FD-47B8-4E7D-A969-74B4046EBD53','Breeze','微风岛屿',true],
+    ['2FE4ED3A-450A-948B-6D6B-E89A78E680A9','Lotus','莲华古城',true],
+    ['FD267378-4D1D-484F-FF52-77821ED10DC2','Pearl','深海明珠',true],
+    ['2BEE0DC9-4FFE-519B-1CBD-7FBE763A6047','Haven','隐士修所',true],
+    ['2C9D57EC-4431-9C5E-2939-8F9EF6DD5CBA','Bind','源工重镇',false],
+    ['224B0A95-48B9-F703-1BD8-67ACA101A61F','Abyss','幽邃地窟',false],
+    ['92584FBE-486A-B1B2-9FAA-39B0F486B498','Sunset','日落之城',false],
+    ['E2AD5C54-4114-A870-9641-8EA21279579A','Icebox','森寒冬港',false],
+    ['1C18AB1F-420D-0D8B-71D0-77AD3C439115','Corrode','盐海矿镇',false]
+  ];
+  g.innerHTML=MAPS.map(m=>{
+    const tag=m[3]?'':'<span class="mtag">无数据</span>';
+    const cls='mc'+(m[3]?'':' off');
+    const click=m[3]?`onclick="sel('${m[0]}',this)"`:`onclick="showToast('该地图当前无统计数据（已轮出竞技图池）')"`;
+    return `<div class="${cls}" data-id="${m[0]}" ${click}><div class="mn">${m[2]}${tag}</div><div class="mnc">${m[1]}</div></div>`;
+  }).join('');
+}
+function sel(id,el){selMap=id;currentMapRegion=null;document.querySelectorAll('.mc').forEach(c=>c.classList.remove('on'));el.classList.add('on');document.getElementById('RA').innerHTML='';lastStats={};rS();rMyCard();renderMapKnowledgePanel();document.getElementById('BA').disabled=false;}
+function initMapKnowledge(){
+  Promise.allSettled([
+    fetch('map_knowledge_ascent.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject(new Error('map_knowledge_ascent HTTP '+r.status))),
+    fetch('map_framework_knowledge_ascent.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject(new Error('map_framework_knowledge_ascent HTTP '+r.status)))
+  ]).then(results=>{
+    if(results[0].status==='fulfilled')mapKnowledgeData=results[0].value;else console.warn('[MAPK] base knowledge load failed',results[0].reason);
+    if(results[1].status==='fulfilled')mapFrameworkData=results[1].value;else console.warn('[MAPK] framework knowledge load failed',results[1].reason);
+    if(!mapKnowledgeData)renderMapKnowledgePanel('地图区域坐标加载失败');else renderMapKnowledgePanel();
+  });
+}
+function isAscentSelected(){return selMap==='7EAECC1B-4337-BBF6-6AB9-04B8F06B3319'||currentMapName()==='亚海悬城';}
+function renderMapKnowledgePanel(errMsg){
+  const el=document.getElementById('MAPK');
+  if(!el)return;
+  if(!selMap){el.classList.remove('sh');el.innerHTML='';return;}
+  if(!isAscentSelected()){
+    el.classList.add('sh');
+    el.innerHTML=`<div class="mapk-head"><div><div class="mapk-title">地图区域知识</div><div class="mapk-sub">当前仅接入亚海悬城。选择亚海悬城后，可点击地图区域查看 Excel 知识库提示。</div></div></div>`;
+    return;
+  }
+  el.classList.add('sh');
+  if(errMsg){el.innerHTML=`<div class="mapk-head"><div><div class="mapk-title">亚海悬城区域知识</div><div class="mapk-sub" style="color:var(--red)">${errMsg}</div></div></div>`;return;}
+  if(!mapKnowledgeData){el.innerHTML=`<div class="mapk-head"><div><div class="mapk-title">亚海悬城区域知识</div><div class="mapk-sub">正在加载区域知识...</div></div></div>`;return;}
+  const d=mapKnowledgeData;
+  const regions=d.regions||[];
+  const selected=currentMapRegion||regions[0]||null;
+  if(!currentMapRegion&&selected)currentMapRegion=selected;
+  const svg=regions.map(r=>{
+    const x=r.x*d.width,y=r.y*d.height,w=r.w*d.width,h=r.h*d.height;
+    const on=selected&&selected.id===r.id?' on':'';
+    return `<g data-id="${r.id}"><rect class="mapk-r${on}" data-type="${r.regionType}" x="${x}" y="${y}" width="${w}" height="${h}" rx="4"></rect><text class="mapk-label" x="${x+6}" y="${y+18}">${r.regionName}</text></g>`;
+  }).join('');
+  const fwText=mapFrameworkData?`框架知识已匹配 ${mapFrameworkData.matchedCount}/${mapFrameworkData.boxedRegionCount} 个框选区域。`:'正在等待框架知识加载。';
+  el.innerHTML=`<div class="mapk-head"><div><div class="mapk-title">亚海悬城区域知识</div><div class="mapk-sub">已接入 ${d.regionCount} 个区域。${fwText} 点击地图区域后，AI 教练也会拿到结构化区域上下文。</div></div><div class="mapk-actions">${regions.slice(0,8).map(r=>`<span class="mapk-chip" data-id="${r.id}">${r.regionName}</span>`).join('')}</div></div><div class="mapk-grid"><div class="mapk-stage"><img src="${d.cleanImage||d.image}" alt="亚海悬城地图"><svg class="mapk-svg" viewBox="0 0 ${d.width} ${d.height}">${svg}</svg></div><div class="mapk-panel" id="MAPK_PANEL">${renderRegionKnowledge(selected)}</div></div>`;
+  el.querySelectorAll('[data-id]').forEach(node=>node.addEventListener('click',()=>selectMapRegion(node.dataset.id)));
+}
+function selectMapRegion(id){
+  if(!mapKnowledgeData)return;
+  const r=(mapKnowledgeData.regions||[]).find(x=>x.id===id);
+  if(!r)return;
+  currentMapRegion=r;
+  renderMapKnowledgePanel();
+}
+function normalizeRegionName(s){return String(s||'').replace(/[\s\u3000_\-—/\\]+/g,'').toLowerCase();}
+function getFrameworkRegion(r){
+  if(!r||!mapFrameworkData)return null;
+  const key=normalizeRegionName(r.regionName);
+  return (mapFrameworkData.regions||[]).find(x=>normalizeRegionName(x.regionName)===key||x.normalizedRegionName===key)||null;
+}
+function renderInfoRow(label,value){return value?`<div class="mapk-item"><b>${label}：</b>${value}</div>`:'';}
+function renderSideBlock(title,data){
+  if(!data)return '';
+  const rows=[
+    renderInfoRow('典型用途',data.typicalUse),
+    renderInfoRow('危险方向',data.dangerDirections),
+    renderInfoRow('关键架枪点位',data.keyAngles),
+    renderInfoRow('行为目标',data.goal),
+    renderInfoRow('推荐动作',data.recommendedActions),
+    renderInfoRow('适用阶段',data.phase)
+  ].join('');
+  return rows?`<div class="mapk-group"><div class="mapk-gh">${title}</div>${rows}</div>`:'';
+}
+function renderRegionKnowledge(r){
+  if(!r)return `<div class="mapk-empty">点击地图上的区域，查看对应的地图知识。</div>`;
+  const fw=getFrameworkRegion(r);
+  const publicInfo=fw?[renderInfoRow('区域定位',fw.positioning),renderInfoRow('关键参照物',fw.landmarks)].join(''):'';
+  const structured=fw?[publicInfo,renderSideBlock('进攻方视角',fw.attack),renderSideBlock('防守方视角',fw.defense)].join(''):'';
+  const body=structured||'<div class="mapk-empty">该区域暂无框架知识。</div>';
+  return `<div class="mapk-info"><div class="mapk-name">${r.fullName||r.regionName}</div><div class="mapk-tags"><span class="mapk-tag">${fw?.regionType||r.regionType}</span><span class="mapk-tag">框架知识</span>${locked[0]?`<span class="mapk-tag">我的特工：${findA(locked[0])?.cn||locked[0]}</span>`:''}</div></div><div class="mapk-body">${body}</div>`;
+}
+function compactRegionKnowledge(r,max=8){
+  if(!r)return [];
+  const fw=getFrameworkRegion(r);
+  if(fw){
+    const lines=[
+      `区域定位：${fw.positioning||''}`,
+      `关键参照物：${fw.landmarks||''}`,
+      `进攻方用途：${fw.attack?.typicalUse||''}`,
+      `进攻方危险方向：${fw.attack?.dangerDirections||''}`,
+      `进攻方推荐动作：${fw.attack?.recommendedActions||''}`,
+      `防守方用途：${fw.defense?.typicalUse||''}`,
+      `防守方危险方向：${fw.defense?.dangerDirections||''}`,
+      `防守方推荐动作：${fw.defense?.recommendedActions||''}`
+    ].filter(x=>!/：$/.test(x)).map(x=>cleanText(x,220));
+    return lines.slice(0,max);
+  }
+  return (r.knowledge||[]).slice(0,max).map(k=>`${k.side||'双方'}-${k.knowledgeType||'提示'}：${cleanText(k.content,180)}`);
+}
+function currentRegionFrameworkKnowledge(){
+  const fw=getFrameworkRegion(currentMapRegion);
+  if(!fw)return null;
+  return {regionName:fw.regionName,regionType:fw.regionType,sideScope:fw.sideScope,positioning:fw.positioning,landmarks:fw.landmarks,attack:fw.attack,defense:fw.defense};
+}
+function rS(){
+  const s=document.getElementById('TS');let h='';
+  for(let i=0;i<5;i++){
+    const a=locked[i];
+    const isMe=i===0;
+    const label=isMe?'<span class="me-tag">我</span>':`队友 ${i}`;
+    const slotCls='sl tappable'+(isMe?' me':'')+(a?' f':'');
+    if(a){
+      const d=findA(a);
+      // 整槽位可点（弹选择器替换）；删除按钮 stopPropagation 避免冒泡触发选择器
+      h+=`<div class="${slotCls}" onclick="openPicker(${i})"><div class="sl-l">${label}</div><div class="sl-c"><img src="${d?d.img:''}" alt="${a}"><div class="nm">${d?d.cn:a}</div><div class="rt" data-r="${d?d.role:''}">${d?RL[d.role]:''}</div></div><button class="x" onclick="event.stopPropagation();rm(${i})" title="清空">&times;</button></div>`;
+    }else{
+      const ph=isMe?'选择我的特工':'点击添加';
+      h+=`<div class="${slotCls}" onclick="openPicker(${i})"><div class="sl-l">${label}</div><div class="sl-c"><div class="sl-p">${ph}</div></div></div>`;
+    }
+  }
+  s.innerHTML=h;
+}
+// 点击空槽时聚焦搜索框，并记住目标槽位
+let pendingSlot=-1;
+function focusInput(i){pendingSlot=i;document.getElementById('AS').focus();}
+function findA(name){return AG.find(x=>x.name===name);}
+function sS(){
+  const inp=document.getElementById('AS'),dd=document.getElementById('DD');
+  inp.addEventListener('focus',()=>{if(inp.value.length>0)shD(inp.value);});
+  inp.addEventListener('input',()=>shD(inp.value));
+  document.addEventListener('click',e=>{if(!e.target.closest('.sw'))dd.classList.remove('sh');});
+}
+function shD(q){
+  const dd=document.getElementById('DD'),ql=q.toLowerCase().trim();
+  const taken=new Set(lockedNames());
+  const f=AG.filter(a=>{if(taken.has(a.name))return false;if(!ql)return true;return a.name.toLowerCase().includes(ql)||a.cn.includes(ql);}).slice(0,10);
+  if(!f.length){dd.classList.remove('sh');return;}
+  dd.innerHTML=f.map(a=>`<div class="di" onclick="add('${a.name}')"><img src="${a.img}" alt="${a.name}"><span class="dn">${a.cn}</span><span class="dr">${RL[a.role]||a.role}</span></div>`).join('');
+  dd.classList.add('sh');
+}
+function add(n){
+  // 优先填到 pendingSlot（用户点击的具体空槽），否则按顺序填第一个空位
+  let idx=-1;
+  if(pendingSlot>=0&&!locked[pendingSlot]){idx=pendingSlot;}
+  else{idx=locked.findIndex(x=>!x);}
+  if(idx<0)return; // 5 槽全满
+  locked[idx]=n;
+  pendingSlot=-1;
+  rS();rMyCard();
+  document.getElementById('AS').value='';
+  document.getElementById('DD').classList.remove('sh');
+}
+function rm(i){locked[i]=null;rS();rMyCard();}
+function resetLocked(){locked=[null,null,null,null,null];pendingSlot=-1;rS();rMyCard();}
+// 渲染"我的特工·数据卡"
+function rMyCard(){
+  const el=document.getElementById('MYC');
+  const me=locked[0];
+  if(!me){el.innerHTML='';return;}
+  const d=findA(me);
+  if(!d){el.innerHTML='';return;}
+  const st=selMap?lastStats[d.id]:null;
+  // 计算同地图同角色英雄排名（如果有数据）
+  let rank='',totalRole=0;
+  if(st&&Object.keys(lastStats).length){
+    const sameRole=AG.filter(x=>x.role===d.role&&lastStats[x.id]);
+    sameRole.sort((a,b)=>(lastStats[b.id].winRate||0)-(lastStats[a.id].winRate||0));
+    const idx=sameRole.findIndex(x=>x.id===d.id);
+    if(idx>=0){rank=idx+1;totalRole=sameRole.length;}
+  }
+  // 全局排名
+  let gRank='',totalAll=0;
+  if(st&&Object.keys(lastStats).length){
+    const all=AG.filter(x=>lastStats[x.id]);
+    all.sort((a,b)=>(lastStats[b.id].winRate||0)-(lastStats[a.id].winRate||0));
+    const idx=all.findIndex(x=>x.id===d.id);
+    if(idx>=0){gRank=idx+1;totalAll=all.length;}
+  }
+  const wc=st?(st.winRate>=52?'hi':st.winRate<48?'lo':'ne'):'';
+  const mapName=selMap?(document.querySelector('.mc.on .mn')?.firstChild?.textContent||'').trim():'';
+  let body;
+  if(!selMap){
+    body=`<div class="myc-empty">请先选择上方地图，再查看 <b>${d.cn}</b> 的数据</div>`;
+  }else if(!st){
+    body=`<div class="myc-empty"><span style="color:var(--gold)">▸</span> 已锁定 <b>${d.cn}</b> 在 <b>${mapName}</b>。点击 <b style="color:var(--red)">分析推荐</b> 查看详细数据。</div>`;
+  }else{
+    body=`<div class="myc-stats">
+      <div class="myc-st"><div class="myc-sv ${wc}">${st.winRate}%</div><div class="myc-sl">胜率</div></div>
+      <div class="myc-sp"></div>
+      <div class="myc-st"><div class="myc-sv">${st.pickRate}%</div><div class="myc-sl">选用率</div></div>
+      <div class="myc-sp"></div>
+      <div class="myc-st"><div class="myc-sv">${st.kda}</div><div class="myc-sl">KDA</div></div>
+      ${rank?`<div class="myc-sp"></div><div class="myc-st"><div class="myc-sv" style="color:var(--gold)">#${rank}<span style="font-size:12px;color:var(--dim)">/${totalRole}</span></div><div class="myc-sl">${RL[d.role]}排名</div></div>`:''}
+      ${gRank?`<div class="myc-sp"></div><div class="myc-st"><div class="myc-sv">#${gRank}<span style="font-size:12px;color:var(--dim)">/${totalAll}</span></div><div class="myc-sl">全英雄排名</div></div>`:''}
+    </div>
+    <div class="myc-bar"><div class="myc-bf ${wc}" style="width:${Math.min(Math.max(st.winRate,5),100)}%"></div><div class="myc-bm" title="50% 平衡线"></div></div>
+    <div class="myc-tip">${st.winRate>=52?`<b style="color:var(--green)">强势 ✓</b> ${d.cn} 在 <b>${mapName}</b> 表现优秀，是不错的选择`:st.winRate<48?`<b style="color:var(--red)">弱势 ✗</b> ${d.cn} 在 <b>${mapName}</b> 胜率偏低，建议考虑其他英雄`:`<b style="color:var(--gold)">中规中矩</b> ${d.cn} 在 <b>${mapName}</b> 表现平均`}</div>`;
+  }
+  el.innerHTML=`<div class="myc"><div class="myc-h"><div class="myc-hl"><span class="me-tag">我</span><img src="${d.img}" alt="${d.name}"><div><div class="myc-nm">${d.cn}</div><div class="myc-rl ar" data-r="${d.role}">${RL[d.role]}${selMap?` · ${mapName}`:''}</div></div></div></div>${body}</div>`;
+}
+// ========= 英雄选择器（点槽位弹出） =========
+let pkSlot=-1;
+function openPicker(i){
+  pkSlot=i;
+  const isMe=i===0;
+  document.getElementById('PK_TITLE').innerHTML=isMe?'<span class="me-tag" style="margin-right:8px">我</span>选择我的特工':`选择队友 ${i} 的特工`;
+  document.getElementById('PK_Q').value='';
+  renderPicker();
+  document.getElementById('PKR').classList.add('sh');
+  setTimeout(()=>document.getElementById('PK_Q').focus(),50);
+}
+function closePicker(){pkSlot=-1;document.getElementById('PKR').classList.remove('sh');}
+function renderPicker(){
+  const grid=document.getElementById('PK_GRID');
+  const q=document.getElementById('PK_Q').value.toLowerCase().trim();
+  const current=locked[pkSlot]; // 当前槽位已选英雄
+  const taken=new Set(locked.filter((v,i)=>v&&i!==pkSlot)); // 其它槽位已选（本槽允许"重选自己"=无操作）
+  // 按角色分组
+  const groups={Duelist:[],Initiator:[],Controller:[],Sentinel:[]};
+  for(const a of AG){
+    if(q&&!a.name.toLowerCase().includes(q)&&!a.cn.includes(q))continue;
+    (groups[a.role]||(groups[a.role]=[])).push(a);
+  }
+  let h='';
+  for(const role of ['Duelist','Initiator','Controller','Sentinel']){
+    const list=groups[role]||[];
+    if(!list.length)continue;
+    h+=`<div class="pk-group"><div class="pk-gh" data-r="${role}">${RL[role]}</div><div class="pk-row">`;
+    for(const a of list){
+      const isCur=a.name===current;
+      const isTaken=taken.has(a.name);
+      const cls='pk-i'+(isCur?' cur':'')+(isTaken?' tk':'');
+      const st=lastStats[a.id]; // 顺便显示胜率（如分析过）
+      const wr=st?`<span class="pk-wr ${st.winRate>=52?'hi':st.winRate<48?'lo':'ne'}">${st.winRate}%</span>`:'';
+      const click=isTaken?'':`onclick="pickerPick('${a.name}')"`;
+      h+=`<div class="${cls}" ${click} title="${a.cn}${isTaken?' · 已被其它槽位选'+'':''}"><img src="${a.img}" alt="${a.name}"><span class="pk-n">${a.cn}</span>${wr}</div>`;
+    }
+    h+=`</div></div>`;
+  }
+  if(!h)h='<div style="text-align:center;color:var(--dim);padding:20px">无匹配特工</div>';
+  grid.innerHTML=h;
+}
+function pickerPick(name){
+  if(pkSlot<0)return;
+  locked[pkSlot]=name;
+  rS();rMyCard();
+  closePicker();
+}
+function pickerClear(){
+  if(pkSlot<0)return;
+  locked[pkSlot]=null;
+  rS();rMyCard();
+  closePicker();
+}
+// ESC 关闭
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(document.getElementById('PKR').classList.contains('sh'))closePicker();
+    else if(document.getElementById('MDK').classList.contains('sh'))cM();
+  }
+});
+async function go(){
+  if(!selMap){showToast('请先选择上方地图');return;}
+  const btn=document.getElementById('BA');btn.classList.add('ld');btn.disabled=true;
+  const ra=document.getElementById('RA');
+  ra.innerHTML='<div class="ld2"><div class="ls"></div><div id="LDM">正在分析 OP.GG 数据...</div></div>';
+  try{
+    console.group('[VP] analyze map='+selMap);
+    const [compData, statsData]=await Promise.all([
+      callMCP('valorant_list_agent_compositions_for_map',{map_id:selMap}),
+      callMCP('valorant_list_agent_statistics',{map_id:selMap})
+    ]);
+    console.log('compData raw:',compData);
+    console.log('statsData raw:',statsData);
+    const stats=parseStats(statsData);
+    const compResult=parseComps(compData,stats);
+    const compositions=compResult.compositions;
+    console.log('parsed compositions:',compositions.length,'tier=',compResult.tier,compositions.slice(0,3));
+    console.log('parsed stats keys:',Object.keys(stats).length);
+    console.groupEnd();
+    // 把统计存起来 + 重渲染槽位（让"我"的卡片立刻显示胜率）
+    lastStats=stats;rS();rMyCard();
+    btn.classList.remove('ld');btn.disabled=false;
+    if(!compositions.length){
+      if(stats&&Object.keys(stats).length){
+        renderStatsFallback(stats);
+        return;
+      }
+      // 走到这里只有一种情况：API 该地图本身就没数据（T4 兜底也空）
+      const totalRaw=compResult.totalRaw;
+      let html;
+      if(totalRaw===0){
+        // op.gg 该地图无数据 — 通常是该图已轮出竞技池
+        html=`<div class="nr"><div class="ic">&#128269;</div><p style="color:var(--gold);font-weight:600">该地图当前无统计数据</p><p style="font-size:13px;margin-top:8px;line-height:1.6">OP.GG 没有此地图的最新对局数据，<br>可能原因：<b>该图已轮换出当前竞技图池</b>，或处于版本过渡期。</p><p style="font-size:12px;color:var(--dim);margin-top:12px">建议选择：亚海悬城 · 霓虹町 · 裂变峡谷 · 微风岛屿 · 莲华古城 · 深海明珠 · 隐士修所</p></div>`;
+      }else{
+        html=`<div class="nr"><div class="ic">?</div><p>没有匹配的阵容</p><p style="font-size:13px;margin-top:8px">数据异常，请稍后重试</p><button class="ba" style="margin-top:16px" onclick="resetLocked();go()">清空锁定 重新分析</button></div>`;
+      }
+      ra.innerHTML=html;
+      return;
+    }
+    rR({compositions,stats,tier:compResult.tier,droppedAgent:compResult.droppedAgent,totalGames:compResult.totalGames});
+  }catch(e){
+    console.error('[VP] failed:',e);
+    btn.classList.remove('ld');btn.disabled=false;
+    const hint=mapErr(e);
+    ra.innerHTML=`<div class="nr"><div class="ic">!</div><p style="color:var(--red);font-weight:600;margin-bottom:8px">${hint.title}</p><p style="font-size:13px;color:var(--txt2);margin-bottom:16px">${hint.detail}</p><button class="ba" onclick="go()">重试</button> <button class="b2" style="background:transparent;border:1px solid var(--border);color:var(--txt2);padding:12px 24px;border-radius:8px;font-family:inherit;cursor:pointer;margin-left:8px" onclick="clearCache()">清缓存重试</button></div>`;
+  }
+}
+// 一键清缓存（含错误粘性端点）
+function clearCache(){
+  Object.keys(sessionStorage).filter(k=>k.startsWith(CACHE_PREFIX)).forEach(k=>sessionStorage.removeItem(k));
+  go();
+}
+// 错误归类，给用户更可读的提示
+function mapErr(e){
+  const m=(e&&e.message)||String(e);
+  if(e&&e.allFailed)return{title:'所有线路均失败',detail:'直连和代理通道都连不上 OP.GG，可能是公网代理也被限制。请稍后再试，或检查本地网络/挂全局代理。<br><span style="font-size:11px;opacity:.7">'+m.replace(/\n/g,'<br>')+'</span>'};
+  if(e&&e.name==='AbortError')return{title:'请求超时',detail:'OP.GG 服务响应过慢（>12s），已自动尝试代理通道仍失败，请稍后重试。'};
+  if(/Failed to fetch|NetworkError|ERR_/i.test(m))return{title:'网络错误',detail:'无法连接服务器，请检查网络/代理后重试。'};
+  if(/HTTP 429/.test(m))return{title:'请求过于频繁',detail:'触发了 OP.GG 限流，请等待 10~30 秒再试。'};
+  if(/HTTP 5/.test(m))return{title:'OP.GG 服务暂时不可用',detail:m+'，稍后再试。'};
+  if(/JSON|Unexpected/i.test(m))return{title:'数据解析失败',detail:'服务端返回了非预期的数据格式，可能是临时故障。'};
+  return{title:'请求失败',detail:m};
+}
+// MCP 端点配置：按顺序尝试，失败自动切换
+const MCP_ORIGIN='https://mcp-api.op.gg/mcp';
+const CUSTOM_PROXY_KEY='vp_custom_proxy';
+function getCustomProxy(){return localStorage.getItem(CUSTOM_PROXY_KEY)||'';}
+function buildEndpoints(){
+  const list=[];
+  const cp=getCustomProxy();
+  if(cp)list.push({name:'你的代理', url:cp, mode:'proxy'}); // 用户自部署的优先级最高
+  // 同源代理：部署时由同一个 Python 服务同时提供页面与 API。
+  try{
+    const sameHostProxy='/mcp';
+    list.push({name:'内置代理', url:sameHostProxy, mode:'proxy'});
+  }catch(e){}
+  list.push({name:'direct', url:MCP_ORIGIN, mode:'direct'});
+  list.push({name:'corsproxy.io', url:'https://corsproxy.io/?'+encodeURIComponent(MCP_ORIGIN), mode:'proxy'});
+  list.push({name:'allorigins', url:'https://api.allorigins.win/raw?url='+encodeURIComponent(MCP_ORIGIN), mode:'proxy'});
+  return list;
+}
+// 缓存配置：5 分钟内同地图同请求复用
+const CACHE_TTL=5*60*1000;
+const CACHE_PREFIX='vp_mcp_';
+function cacheGet(k){
+  try{
+    const raw=sessionStorage.getItem(CACHE_PREFIX+k);if(!raw)return null;
+    const o=JSON.parse(raw);if(Date.now()-o.t>CACHE_TTL){sessionStorage.removeItem(CACHE_PREFIX+k);return null;}
+    return o.d;
+  }catch(e){return null;}
+}
+function cacheSet(k,d){
+  try{sessionStorage.setItem(CACHE_PREFIX+k,JSON.stringify({t:Date.now(),d}));}catch(e){/* 配额满 忽略 */}
+}
+// 调用单个端点（带超时 + 单次重试）
+async function callEndpoint(ep,body,retry=1){
+  let lastErr;
+  for(let i=0;i<=retry;i++){
+    const ctl=new AbortController();
+    const tid=setTimeout(()=>ctl.abort(),12000); // 单端点 12s 超时
+    try{
+      const r=await fetch(ep.url,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json, text/event-stream'},
+        body,
+        signal:ctl.signal
+      });
+      clearTimeout(tid);
+      if(!r.ok){
+        if(r.status>=400&&r.status<500&&r.status!==429)throw new Error(`HTTP ${r.status} ${r.statusText}`);
+        lastErr=new Error(`HTTP ${r.status} ${r.statusText}`);
+        if(i<retry){await sleep(500*(i+1));continue;}
+        throw lastErr;
+      }
+      const txt=await r.text();
+      const parsed=parseResponse(txt);
+      if(parsed&&(parsed.result||parsed.error)){
+        if(parsed.error)throw new Error('MCP Error: '+(parsed.error.message||JSON.stringify(parsed.error)));
+        return parsed;
+      }
+      throw new Error('响应中未找到有效结果');
+    }catch(e){
+      clearTimeout(tid);lastErr=e;
+      const retriable=e.name==='AbortError'||/Failed to fetch|NetworkError|HTTP 5|HTTP 429/i.test(e.message||'');
+      if(i<retry&&retriable){await sleep(500*(i+1));continue;}
+      throw e;
+    }
+  }
+  throw lastErr||new Error('未知错误');
+}
+// 主入口：缓存 → 多端点兜底
+async function callMCP(name,args){
+  const ck=name+'|'+JSON.stringify(args);
+  const hit=cacheGet(ck);
+  if(hit)return hit;
+  const body=JSON.stringify({jsonrpc:'2.0',id:Date.now(),method:'tools/call',params:{name,arguments:args}});
+  const errs=[];
+  // 优先用上次成功的端点
+  const endpoints=buildEndpoints();
+  const lastOk=sessionStorage.getItem(CACHE_PREFIX+'ok_ep');
+  const ordered=lastOk?[...endpoints].sort((a,b)=>a.name===lastOk?-1:b.name===lastOk?1:0):endpoints;
+  for(const ep of ordered){
+    setLoadMsg(ep.mode==='direct'?'连接 OP.GG...':`通过代理 ${ep.name} 连接...`);
+    try{
+      const data=await callEndpoint(ep,body);
+      cacheSet(ck,data);
+      sessionStorage.setItem(CACHE_PREFIX+'ok_ep',ep.name);
+      return data;
+    }catch(e){
+      errs.push(`[${ep.name}] ${e.message||e}`);
+      // 4xx (非 429) 无需切端点
+      if(/HTTP 4(?!29)/.test(e.message||''))break;
+    }
+  }
+  const err=new Error('所有端点均失败:\n'+errs.join('\n'));
+  err.allFailed=true;
+  throw err;
+}
+function setLoadMsg(t){const el=document.getElementById('LDM');if(el)el.textContent=t;}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+// 健壮解析：纯 JSON 或 SSE 流（取最后一条含 result 的 data 行）
+function parseResponse(txt){
+  if(!txt)return null;
+  const trimmed=txt.trim();
+  if(trimmed.startsWith('{')){
+    try{return JSON.parse(trimmed);}catch(e){/* 落到 SSE 分支 */}
+  }
+  let last=null;
+  for(const raw of txt.split(/\r?\n/)){
+    const line=raw.trim();
+    if(!line.startsWith('data:'))continue;
+    const payload=line.slice(5).trim();
+    if(!payload||payload==='[DONE]')continue;
+    try{
+      const obj=JSON.parse(payload);
+      // 优先返回包含 result 的那条
+      if(obj&&(obj.result||obj.error))return obj;
+      last=obj;
+    }catch(e){/* 跳过坏行 */}
+  }
+  return last;
+}
+function parseMCP(data){
+  const blocks=data?.result?.content||[];
+  for(const b of blocks){if(typeof b==='object'&&b.text)try{return JSON.parse(b.text);}catch(e){}}
+  return{};
+}
+// 把所有阵容预先解析成统一结构（不做过滤）
+function bayesWinRate(wins,pickCount){
+  const wr=(wins+(BAYES_PRIOR_WR/100)*BAYES_PRIOR_GAMES)/(pickCount+BAYES_PRIOR_GAMES)*100;
+  return Math.round(wr*10)/10;
+}
+function rawAllComps(raw){
+  const d=parseMCP(raw),all=[];
+  for(const it of(d.data||[])){
+    if(!it||!it.characterNames)continue;
+    const names=String(it.characterNames).split('|').map(s=>s.trim()).filter(Boolean);
+    if(!names.length)continue;
+    const pc=it.pickCount||0,wins=it.wins||0,defeats=it.defeats||0;
+    const winRate=pc?Math.round(wins/pc*1000)/10:0;
+    const weightedWinRate=bayesWinRate(wins,pc);
+    all.push({agents:names,pickCount:pc,wins,defeats,winRate,weightedWinRate,lowSample:pc<MIN_COMP_SAMPLE});
+  }
+  return all;
+}
+// 4 级降级匹配
+// tier 1: 严格全匹配所有锁定特工
+// tier 2: 优先包含尽可能多的已锁定特工（从 N-1 到 1 逐层寻找）
+// tier 3: 职业搭配匹配（职业组合一致，不要求英雄相同）
+// tier 4: 完全不过滤，只看该地图 TOP 阵容
+// 返回 { tier, compositions, matchedCount?, requiredCount?, totalRaw, totalGames }
+function parseComps(raw,stats){
+  const all=rawAllComps(raw);
+  const totalRaw=all.length;
+  const inner=parseMCP(raw);
+  const totalGames=(inner.meta&&inner.meta.totalGameCount)||0;
+  const lk=lockedNames(); // 队友 + 我（locked 全部）
+  const rankComps=arr=>{
+    const source=arr.some(c=>(c.pickCount||0)>=MIN_COMP_SAMPLE)?arr.filter(c=>(c.pickCount||0)>=MIN_COMP_SAMPLE):arr;
+    return source.slice().sort((a,b)=>(b.weightedWinRate||0)-(a.weightedWinRate||0)||(b.winRate||0)-(a.winRate||0)||(b.pickCount||0)-(a.pickCount||0)).slice(0,20);
+  };
+  // T1
+  if(lk.length){
+    const lkL=lk.map(n=>n.toLowerCase());
+    const t1=all.filter(c=>{const cl=c.agents.map(n=>n.toLowerCase());return lkL.every(l=>cl.includes(l));});
+    if(t1.length)return{tier:1,compositions:rankComps(t1),totalRaw,totalGames};
+  }else{
+    // 没有任何锁定 → 直接当 T1 全量
+    return{tier:1,compositions:rankComps(all),totalRaw,totalGames};
+  }
+  // T2：优先包含尽可能多的已锁定特工；从 N-1 命中逐层降到 1 命中
+  if(lk.length>=2){
+    const lkL=lk.map(n=>n.toLowerCase());
+    for(let need=lkL.length-1;need>=1;need--){
+      const partial=all.filter(c=>{
+        const cl=c.agents.map(n=>n.toLowerCase());
+        const hit=lkL.filter(l=>cl.includes(l)).length;
+        return hit>=need;
+      });
+      if(partial.length)return{tier:2,compositions:rankComps(partial),matchedCount:need,requiredCount:lkL.length,totalRaw,totalGames};
+    }
+  }
+  // T3：职业搭配匹配
+  const lkRoles=lk.map(n=>{const a=findA(n);return a?a.role:null;}).filter(Boolean);
+  if(lkRoles.length){
+    // 计算队友职业的多重集合（如 ['Duelist','Controller']）
+    const lkRoleCount={};lkRoles.forEach(r=>lkRoleCount[r]=(lkRoleCount[r]||0)+1);
+    const t3=all.filter(c=>{
+      const roles=c.agents.map(n=>{const a=findA(n);return a?a.role:null;}).filter(Boolean);
+      const rc={};roles.forEach(r=>rc[r]=(rc[r]||0)+1);
+      // 阵容里每个职业出现次数 ≥ 锁定要求
+      return Object.entries(lkRoleCount).every(([r,n])=>(rc[r]||0)>=n);
+    });
+    if(t3.length)return{tier:3,compositions:rankComps(t3),totalRaw,totalGames};
+  }
+  // T4：兜底，整图 TOP 阵容
+  return{tier:4,compositions:rankComps(all),totalRaw,totalGames};
+}
+function parseStats(raw){
+  const d=parseMCP(raw),s={},total=(d&&d.meta&&d.meta.totalGameCount)||1;
+  for(const it of(d.data||[])){
+    if(!it||!it.characterId)continue;
+    const gc=it.gameCount||0;
+    if(gc<=0)continue;
+    const wins=it.wins||0,kills=it.kills||0,assists=it.assists||0,deaths=Math.max(it.deaths||0,1);
+    const winRate=Math.round(wins/gc*1000)/10;
+    s[it.characterId]={winRate,pickRate:Math.round(gc/total*1000)/10,kda:Math.round((kills+assists)/deaths*100)/100,gameCount:gc,wins,weightedWinRate:bayesWinRate(wins,gc)};
+  }
+  return s;
+}
+function roleCounts(){const c={Duelist:0,Initiator:0,Controller:0,Sentinel:0};lockedNames().forEach(n=>{const a=findA(n);if(a&&c[a.role]!=null)c[a.role]++;});return c;}
+function roleNeedBonus(role){const c=roleCounts();const target={Duelist:1,Initiator:1,Controller:1,Sentinel:1};return Math.max(0,(target[role]||0)-(c[role]||0));}
+function buildPickCandidates(compositions){
+  const taken=new Set(lockedNames());
+  const agg={};
+  compositions.forEach((comp,idx)=>{
+    const rankBoost=Math.max(0,20-idx);
+    comp.agents.filter(n=>!taken.has(n)).forEach(n=>{
+      const a=findA(n);if(!a)return;
+      if(!agg[n])agg[n]={name:n,agent:a,count:0,sample:0,scoreSum:0,bestRank:idx+1};
+      const item=agg[n];item.count++;item.sample+=comp.pickCount||0;item.scoreSum+=(comp.weightedWinRate||comp.winRate||0)*(comp.pickCount||1)+rankBoost;item.bestRank=Math.min(item.bestRank,idx+1);
+    });
+  });
+  return Object.values(agg).map(x=>{const avg=x.sample?x.scoreSum/x.sample:x.scoreSum;const bonus=roleNeedBonus(x.agent.role)*3;return{...x,score:Math.round((avg+bonus)*10)/10,avgWeighted:Math.round(avg*10)/10,roleBonus:bonus};}).sort((a,b)=>b.score-a.score||b.count-a.count||b.sample-a.sample).slice(0,5);
+}
+function renderPickCandidates(candidates,sourceLabel='基于匹配阵容聚合'){
+  if(!candidates||!candidates.length)return '';
+  return `<div class="pcand"><div class="pcand-head"><div><div class="pcand-title">我该选谁</div><div class="pcand-sub">${sourceLabel}，已自动排除当前已锁定特工，并结合样本量加权排序。</div></div></div><div class="pcand-grid">${candidates.map((c,i)=>`<div class="pcand-card"><div class="pcand-rank">${i+1}</div><img src="${c.agent.img}" alt="${c.name}"><div><div class="pcand-n">${c.agent.cn}</div><div class="pcand-meta">${RL[c.agent.role]} · 加权分 <span class="pcand-w">${c.score}</span><br>命中 ${c.count||1} 个阵容 · 样本 ${(c.sample||c.gameCount||0).toLocaleString()}</div></div></div>`).join('')}</div></div>`;
+}
+function buildStatsFallbackCandidates(stats){
+  const taken=new Set(lockedNames());
+  return AG.map(a=>({agent:a,stats:stats[a.id]})).filter(x=>x.stats&&!taken.has(x.agent.name)).map(x=>{
+    const roleBonus=roleNeedBonus(x.agent.role)*3;
+    const score=Math.round(((x.stats.weightedWinRate||x.stats.winRate||0)+roleBonus+(x.stats.pickRate||0)*0.12)*10)/10;
+    return{name:x.agent.name,agent:x.agent,score,gameCount:x.stats.gameCount||0,count:1,sample:x.stats.gameCount||0,winRate:x.stats.winRate,pickRate:x.stats.pickRate,roleBonus};
+  }).sort((a,b)=>b.score-a.score||b.gameCount-a.gameCount).slice(0,5);
+}
+function renderStatsFallback(stats){
+  const ra=document.getElementById('RA');
+  const candidates=buildStatsFallbackCandidates(stats);
+  if(!candidates.length){ra.innerHTML='<div class="nr"><div class="ic">?</div><p>当前地图没有可用推荐数据</p></div>';return;}
+  const topStats=Object.entries(stats).filter(([,s])=>s&&s.winRate!=null).sort((a,b)=>(b[1].weightedWinRate||b[1].winRate)-(a[1].weightedWinRate||a[1].winRate)).slice(0,5);
+  const statHtml=`<div class="stit">地图英雄胜率 TOP 5</div><div class="sg2">${topStats.map(([id,s])=>{const a=AG.find(x=>x.id===id);if(!a)return'';return`<div class="sc2"><img src="${a.img}" alt="${a.name}"><div class="inf"><div class="sn">${a.cn}</div><div class="sv2">胜率 <span class="v">${s.winRate}%</span> · 选用率 <span class="v">${s.pickRate}%</span> · KDA <span class="v">${s.kda}</span></div></div></div>`;}).join('')}</div>`;
+  const banner='<div class="cf t3"><div class="cf-ic">!</div><div class="cf-bd"><div class="cf-tt">阵容组合数据不足 · 已启用单英雄兜底</div><div class="cf-ds">当前没有可用的阵容组合结果，以下候选基于该地图单英雄表现、样本量平滑和队伍职业缺口生成。</div></div></div>';
+  ra.innerHTML=statHtml+renderPickCandidates(candidates,'基于地图英雄数据兜底推荐')+banner;
+}
+function rR(d){
+  const ra=document.getElementById('RA');
+  if(!d.compositions||!d.compositions.length){ra.innerHTML='<div class="nr"><div class="ic">?</div><p>没有匹配的阵容，试试减少锁定队友</p></div>';return;}
+  // 置信度警示条
+  const cf=buildConfBanner(d);
+  let sh='';
+  if(d.stats&&Object.keys(d.stats).length){
+    const ss=Object.entries(d.stats).filter(([,s])=>s&&s.winRate!=null).sort((a,b)=>b[1].winRate-a[1].winRate).slice(0,5);
+    sh=`<div class="stit">地图英雄胜率 TOP 5</div><div class="sg2">${ss.map(([id,s])=>{const a=AG.find(x=>x.id===id);if(!a)return'';return`<div class="sc2"><img src="${a.img}" alt="${a.name}"><div class="inf"><div class="sn">${a.cn}</div><div class="sv2">胜率 <span class="v">${s.winRate}%</span> · 选用率 <span class="v">${s.pickRate}%</span> · KDA <span class="v">${s.kda}</span></div></div></div>`;}).join('')}</div>`;
+  }
+  // 总样本数（参与排序的 top 阵容总场次）
+  const totalSample=d.compositions.reduce((s,c)=>s+(c.pickCount||0),0);
+  const candidates=buildPickCandidates(d.compositions);
+  let ch=renderPickCandidates(candidates);
+  ch+=`<div style="margin-top:40px"><div class="rh"><div class="stit" style="margin:0">推荐阵容</div><div class="rm">找到 <span>${d.compositions.length}</span> 个匹配阵容 · 共 <span>${totalSample.toLocaleString()}</span> 场样本 · 按贝叶斯加权排序</div></div>`;
+  ch+=cf;
+  const me=locked[0]; // 当前"我"选的英雄
+  const teammates=new Set(locked.slice(1).filter(Boolean));
+  d.compositions.forEach((c,i)=>{
+    const rk=i+1,rc=rk<=3?'r'+rk:'',wc=c.winRate>=52?'hi':c.winRate<48?'lo':'ne';
+    const taken=lockedNames();
+    const sug=c.agents.filter(a=>!taken.includes(a));
+    let tp='';
+    if(sug.length){
+      const sugCn=sug.map(n=>{const a=findA(n);return a?a.cn:n;});
+      const sampleHint=`<span class="tip-meta">基于 ${(c.pickCount||0).toLocaleString()} 场对局 · 加权分 ${c.weightedWinRate||c.winRate}%</span>`;
+      tp=`<div class="tip">${rk===1?'<b>推荐选择：</b>':'可选：<b>'}${sugCn.join(' / ')}</b>${sampleHint}</div>`;
+    }
+    ch+=`<div class="cc ${rc}" style="animation-delay:${i*.08}s"><div class="ct"><div class="cr">${rk}</div><div class="ca">${c.agents.map(n=>{
+      const a=findA(n);
+      const isMe=n===me;
+      const isTeam=teammates.has(n);
+      const cls=isMe?'cag mine lk':isTeam?'cag lk':'cag sg';
+      const tag=isMe?'<span class="cag-me">我</span>':'';
+      return`<div class="${cls}">${tag}<img src="${a?a.img:''}" alt="${n}" onerror="this.style.background='#333'"><span class="an">${a?a.cn:n}</span><span class="ar" data-r="${a?a.role:''}">${a?RL[a.role]:''}</span></div>`;
+    }).join('')}</div><div class="cs"><div class="si"><div class="sv ${wc}">${c.winRate}%</div><div class="sl2">胜率</div></div><div class="si"><div class="sv">${(c.pickCount||0).toLocaleString()}</div><div class="sl2">样本场次</div></div></div></div><div class="wb"><div class="wf ${wc}" style="width:${Math.max(c.winRate,30)}%"></div></div>${tp}</div>`;
+  });
+  ch+='</div>';
+  ra.innerHTML=sh+ch;
+}
+// 根据 tier 和数据生成置信度警示条
+function buildConfBanner(d){
+  const tier=d.tier||1;
+  const totalGames=d.totalGames||0;
+  const compCount=d.compositions.length;
+  const sampleSum=d.compositions.reduce((s,c)=>s+(c.pickCount||0),0);
+  const lk=lockedNames();
+  const lkCn=lk.map(n=>{const a=findA(n);return a?a.cn:n;});
+  if(tier===1){
+    if(!lk.length){
+      return `<div class="cf t1"><div class="cf-ic">&#10003;</div><div class="cf-bd"><div class="cf-tt">完全匹配 · 数据可信</div><div class="cf-ds">未锁定任何队友，展示该地图<b>整体胜率最高</b>的 ${compCount} 个阵容。</div><div class="cf-meta">样本 ${sampleSum.toLocaleString()} 场 · 全图 ${totalGames.toLocaleString()} 场</div></div></div>`;
+    }
+    return `<div class="cf t1"><div class="cf-ic">&#10003;</div><div class="cf-bd"><div class="cf-tt">完全匹配 · 数据可信</div><div class="cf-ds">基于<b>包含队伍当前锁定（${lkCn.join(' / ')}）</b>的 ${compCount} 个真实高胜率阵容推荐。</div><div class="cf-meta">样本 ${sampleSum.toLocaleString()} 场 · 全图 ${totalGames.toLocaleString()} 场</div></div></div>`;
+  }
+  if(tier===2){
+    const matched=d.matchedCount||0,required=d.requiredCount||lk.length;
+    return `<div class="cf t2"><div class="cf-ic">!</div><div class="cf-bd"><div class="cf-tt">部分锁定匹配 · 数据置信度中等</div><div class="cf-ds">未找到完全包含队伍所有锁定的阵容，已改为优先寻找<b>包含尽可能多已锁定特工</b>的阵容。本次命中 ${matched}/${required} 个锁定特工。</div><div class="cf-meta">匹配 ${compCount} 个阵容 · 样本 ${sampleSum.toLocaleString()} 场 · 全图 ${totalGames.toLocaleString()} 场</div></div></div>`;
+  }
+  if(tier===3){
+    return `<div class="cf t3"><div class="cf-ic">!</div><div class="cf-bd"><div class="cf-tt">职业搭配匹配 · 数据置信度中等</div><div class="cf-ds">队伍当前阵容（${lkCn.join(' / ')}）在该地图<b>具体英雄组合较罕见</b>，已降级为按<b>职业搭配</b>匹配高胜率阵容。<br>推荐结果反映"队友职业组合下的最优补位"，单个英雄可能未完全匹配。</div><div class="cf-meta">匹配 ${compCount} 个阵容 · 样本 ${sampleSum.toLocaleString()} 场 · 全图 ${totalGames.toLocaleString()} 场</div></div></div>`;
+  }
+  // tier 4
+  return `<div class="cf t4"><div class="cf-ic">!</div><div class="cf-bd"><div class="cf-tt">阵容罕见 · 仅供参考</div><div class="cf-ds">队伍当前锁定的阵容（${lkCn.join(' / ')}）在该地图<b>样本极少</b>，无法基于真实对局推荐补位。<br>以下展示该地图<b>整体胜率最高</b>的阵容供参考，建议结合上方"地图英雄胜率 TOP 5"自行判断。</div><div class="cf-meta">展示 ${compCount} 个 · 全图 ${totalGames.toLocaleString()} 场 · 建议清空锁定后重看</div></div></div>`;
+}
+const AG=[
+  {id:"41FB69C1-4189-7B37-F117-BCAF1E96F1BF",name:"Astra",cn:"星礈",role:"Controller",img:"https://c-valorant-api.op.gg/Assets/Characters/41FB69C1-4189-7B37-F117-BCAF1E96F1BF_small.png"},
+  {id:"5F8D3A7F-467B-97F3-062C-13ACF203C006",name:"Breach",cn:"铁臂",role:"Initiator",img:"https://c-valorant-api.op.gg/Assets/Characters/5F8D3A7F-467B-97F3-062C-13ACF203C006_small.png"},
+  {id:"9F0D8BA9-4140-B941-57D3-A7AD57C6B417",name:"Brimstone",cn:"炼狱",role:"Controller",img:"https://c-valorant-api.op.gg/Assets/Characters/9F0D8BA9-4140-B941-57D3-A7AD57C6B417_small.png"},
+  {id:"22697A3D-45BF-8DD7-4FEC-84A9E28C69D7",name:"Chamber",cn:"尚勃勒",role:"Sentinel",img:"https://c-valorant-api.op.gg/Assets/Characters/22697A3D-45BF-8DD7-4FEC-84A9E28C69D7_small.png"},
+  {id:"1DBF2EDD-4729-0984-3115-DAA5EED44993",name:"Clove",cn:"暮蝶",role:"Controller",img:"https://c-valorant-api.op.gg/Assets/Characters/1DBF2EDD-4729-0984-3115-DAA5EED44993_small.png"},
+  {id:"117ED9E3-49F3-6512-3CCF-0CADA7E3823B",name:"Cypher",cn:"零",role:"Sentinel",img:"https://c-valorant-api.op.gg/Assets/Characters/117ED9E3-49F3-6512-3CCF-0CADA7E3823B_small.png"},
+  {id:"CC8B64C8-4B25-4FF9-6E7F-37B4DA43D235",name:"Deadlock",cn:"钢索",role:"Sentinel",img:"https://c-valorant-api.op.gg/Assets/Characters/CC8B64C8-4B25-4FF9-6E7F-37B4DA43D235_small.png"},
+  {id:"DADE69B4-4F5A-8528-247B-219E5A1FACD6",name:"Fade",cn:"黑梦",role:"Initiator",img:"https://c-valorant-api.op.gg/Assets/Characters/DADE69B4-4F5A-8528-247B-219E5A1FACD6_small.png"},
+  {id:"E370FA57-4757-3604-3648-499E1F642D3F",name:"Gekko",cn:"盖可",role:"Initiator",img:"https://c-valorant-api.op.gg/Assets/Characters/E370FA57-4757-3604-3648-499E1F642D3F_small.png"},
+  {id:"95B78ED7-4637-86D9-7E41-71BA8C293152",name:"Harbor",cn:"海神",role:"Controller",img:"https://c-valorant-api.op.gg/Assets/Characters/95B78ED7-4637-86D9-7E41-71BA8C293152_small.png"},
+  {id:"0E38B510-41A8-5780-5E8F-568B2A4F2D6C",name:"Iso",cn:"壹决",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/0E38B510-41A8-5780-5E8F-568B2A4F2D6C_small.png"},
+  {id:"ADD6443A-41BD-E414-F6AD-E58D267F4E95",name:"Jett",cn:"捷风",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/ADD6443A-41BD-E414-F6AD-E58D267F4E95_small.png"},
+  {id:"601DBBE7-43CE-BE57-2A40-4ABD24953621",name:"KAY/O",cn:"K/O",role:"Initiator",img:"https://c-valorant-api.op.gg/Assets/Characters/601DBBE7-43CE-BE57-2A40-4ABD24953621_small.png"},
+  {id:"1E58DE9C-4950-5125-93E9-A0AEE9F98746",name:"Killjoy",cn:"奇乐",role:"Sentinel",img:"https://c-valorant-api.op.gg/Assets/Characters/1E58DE9C-4950-5125-93E9-A0AEE9F98746_small.png"},
+  {id:"7C8A4701-4DE6-9355-B254-E09BC2A34B72",name:"Miks",cn:"迷核",role:"Controller",img:"https://c-valorant-api.op.gg/Assets/Characters/7C8A4701-4DE6-9355-B254-E09BC2A34B72_small.png"},
+  {id:"BB2A4828-46EB-8CD1-E765-15848195D751",name:"Neon",cn:"霓虹",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/BB2A4828-46EB-8CD1-E765-15848195D751_small.png"},
+  {id:"8E253930-4C05-31DD-1B6C-968525494517",name:"Omen",cn:"幽影",role:"Controller",img:"https://c-valorant-api.op.gg/Assets/Characters/8E253930-4C05-31DD-1B6C-968525494517_small.png"},
+  {id:"EB93336A-449B-9C1B-0A54-A891F7921D69",name:"Phoenix",cn:"不死鸟",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/EB93336A-449B-9C1B-0A54-A891F7921D69_small.png"},
+  {id:"F94C3B30-42BE-E959-889C-5AA313DBA261",name:"Raze",cn:"雷兹",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/F94C3B30-42BE-E959-889C-5AA313DBA261_small.png"},
+  {id:"A3BFB853-43B2-7238-A4F1-AD90E9E46BCC",name:"Reyna",cn:"芮娜",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/A3BFB853-43B2-7238-A4F1-AD90E9E46BCC_small.png"},
+  {id:"569FDD95-4D10-43AB-CA70-79BECC718B46",name:"Sage",cn:"贤者",role:"Sentinel",img:"https://c-valorant-api.op.gg/Assets/Characters/569FDD95-4D10-43AB-CA70-79BECC718B46_small.png"},
+  {id:"6F2A04CA-43E0-BE17-7F36-B3908627744D",name:"Skye",cn:"斯凯",role:"Initiator",img:"https://c-valorant-api.op.gg/Assets/Characters/6F2A04CA-43E0-BE17-7F36-B3908627744D_small.png"},
+  {id:"320B2A48-4D9B-A075-30F1-1F93A9B638FA",name:"Sova",cn:"猎枭",role:"Initiator",img:"https://c-valorant-api.op.gg/Assets/Characters/320B2A48-4D9B-A075-30F1-1F93A9B638FA_small.png"},
+  {id:"B444168C-4E35-8076-DB47-EF9BF368F384",name:"Tejo",cn:"钛狐",role:"Initiator",img:"https://c-valorant-api.op.gg/Assets/Characters/B444168C-4E35-8076-DB47-EF9BF368F384_small.png"},
+  {id:"92EEEF5D-43B5-1D4A-8D03-B3927A09034B",name:"Veto",cn:"禁灭",role:"Sentinel",img:"https://c-valorant-api.op.gg/Assets/Characters/92EEEF5D-43B5-1D4A-8D03-B3927A09034B_small.png"},
+  {id:"707EAB51-4836-F488-046A-CDA6BF494859",name:"Viper",cn:"蝰蛇",role:"Controller",img:"https://c-valorant-api.op.gg/Assets/Characters/707EAB51-4836-F488-046A-CDA6BF494859_small.png"},
+  {id:"EFBA5359-4016-A1E5-7626-B1AE76895940",name:"Vyse",cn:"维斯",role:"Sentinel",img:"https://c-valorant-api.op.gg/Assets/Characters/EFBA5359-4016-A1E5-7626-B1AE76895940_small.png"},
+  {id:"DF1CB487-4902-002E-5C17-D28E83E78588",name:"Waylay",cn:"幻棱",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/DF1CB487-4902-002E-5C17-D28E83E78588_small.png"},
+  {id:"7F94D92C-4234-0A36-9646-3A87EB8B5C89",name:"Yoru",cn:"夜露",role:"Duelist",img:"https://c-valorant-api.op.gg/Assets/Characters/7F94D92C-4234-0A36-9646-3A87EB8B5C89_small.png"}
+];
+function currentMapName(){
+  const el=document.querySelector('.mc.on .mn');
+  if(!el)return '未选择地图';
+  const node=[...el.childNodes].find(n=>n.nodeType===Node.TEXT_NODE);
+  return (node?node.textContent:el.textContent).trim()||'未选择地图';
+}
+function cleanText(t,n=600){return String(t||'').replace(/\s+/g,' ').trim().slice(0,n);}
+function collectChatContext(){
+  const picked=locked.map((n,i)=>{
+    if(!n)return null;
+    const a=findA(n);
+    const slot=i===0?'我':`队友 ${i}`;
+    return a?`${slot}: ${a.cn}(${a.name}, ${RL[a.role]})`:`${slot}: ${n}`;
+  }).filter(Boolean);
+  const conf=cleanText(document.querySelector('#RA .cf')?.innerText||'',500);
+  const topComps=[...document.querySelectorAll('#RA .cc')].slice(0,3).map((el,i)=>`TOP${i+1}: ${cleanText(el.innerText,520)}`);
+  const topStats=[...document.querySelectorAll('#RA .sc2')].slice(0,5).map(el=>cleanText(el.innerText,120));
+  const myCard=cleanText(document.getElementById('MYC')?.innerText||'',500);
+  const hasResult=!!document.querySelector('#RA .cc')||!!document.querySelector('#RA .pcand');
+  return {mapId:selMap||'',mapName:currentMapName(),pickedAgents:picked,myAgentCard:myCard,confidence:conf,topRecommendations:topComps,mapTopStats:topStats,hasRecommendation:hasResult};
+}
+function addChatMsg(role,text){
+  const box=document.getElementById('CHAT_MSGS');
+  if(!box)return null;
+  const div=document.createElement('div');
+  div.className=`chat-msg ${role}`;
+  div.textContent=text;
+  box.appendChild(div);
+  box.scrollTop=box.scrollHeight;
+  return div;
+}
+let chatConversationId='';
+const CHAT_WELCOME='你好，我是阵容教练。选好地图和英雄后，可以问我为什么推荐、怎么补位、进攻防守怎么打。';
+function resetChat(){
+  chatConversationId='';
+  const box=document.getElementById('CHAT_MSGS');
+  if(box)box.innerHTML='';
+  addChatMsg('bot',CHAT_WELCOME);
+}
+async function sendChat(text){
+  const input=document.getElementById('CHAT_INPUT');
+  const q=(text||input.value||'').trim();
+  if(!q)return;
+  input.value='';
+  addChatMsg('user',q);
+  const ctx=collectChatContext();
+  const pending=addChatMsg('bot','正在连接阵容教练...');
+  try{
+    const r=await fetch('/chat_stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,context:ctx,conversation_id:chatConversationId})});
+    if(!r.ok||!r.body)throw new Error('HTTP '+r.status);
+    const reader=r.body.getReader();
+    const dec=new TextDecoder('utf-8');
+    let buf='',started=false,renderBuf='',raf=0;
+    const msgBox=document.getElementById('CHAT_MSGS');
+    const flush=()=>{
+      raf=0;
+      if(renderBuf){pending.textContent+=renderBuf;renderBuf='';}
+      if(msgBox)msgBox.scrollTop=msgBox.scrollHeight;
+    };
+    const stripMd=t=>t.replace(/\*+/g,'').replace(/^#{1,6}\s/gm,'').replace(/^>\s?/gm,'');
+    const queueDelta=t=>{
+      renderBuf+=stripMd(t);
+      if(!raf)raf=requestAnimationFrame(flush);
+    };
+    while(true){
+      const {value,done}=await reader.read();
+      if(done)break;
+      buf+=dec.decode(value,{stream:true});
+      const blocks=buf.split('\n\n');buf=blocks.pop()||'';
+      for(const b of blocks){
+        const line=b.split('\n').find(x=>x.startsWith('data:'));
+        if(!line)continue;
+        const raw=line.slice(5).trim();
+        if(raw==='[DONE]')continue;
+        const data=JSON.parse(raw);
+        if(data.conversation_id)chatConversationId=data.conversation_id;
+        if(data.error){pending.textContent=data.error;continue;}
+        if(data.delta){
+          if(!started){pending.textContent='';started=true;}
+          queueDelta(data.delta);
+        }
+        if(data.done&&!started&&data.answer)pending.textContent=data.answer;
+      }
+    }
+    if(raf)cancelAnimationFrame(raf);
+    flush();
+    if(!pending.textContent)pending.textContent='没有拿到回答。';
+  }catch(e){
+    if(pending)pending.textContent='聊天服务暂时不可用：'+(e.message||e);
+  }
+}
+let chatFloatMode=localStorage.getItem('vp_chat_float')==='1';
+function applyChatMode(){
+  const bot=document.getElementById('CHATBOT');
+  const btn=document.getElementById('CHAT_MODE');
+  if(!bot||!btn)return;
+  bot.classList.toggle('float-mode',chatFloatMode);
+  document.body.classList.toggle('chat-float',chatFloatMode);
+  btn.textContent=chatFloatMode?'展开':'悬浮';
+  btn.title=chatFloatMode?'切换为宽面板':'切换为悬浮窄面板';
+}
+function toggleChatMode(){
+  chatFloatMode=!chatFloatMode;
+  localStorage.setItem('vp_chat_float',chatFloatMode?'1':'0');
+  applyChatMode();
+}
+function initChatbot(){
+  const bot=document.getElementById('CHATBOT');
+  const toggle=document.getElementById('CHAT_TOGGLE');
+  const close=document.getElementById('CHAT_CLOSE');
+  const clear=document.getElementById('CHAT_CLEAR');
+  const modeBtn=document.getElementById('CHAT_MODE');
+  const send=document.getElementById('CHAT_SEND');
+  const input=document.getElementById('CHAT_INPUT');
+  if(!bot||!toggle||!close||!clear||!send||!input)return;
+  toggle.onclick=()=>{bot.classList.add('open');document.body.classList.add('chat-open');applyChatMode();};
+  close.onclick=()=>{bot.classList.remove('open');document.body.classList.remove('chat-open');document.body.classList.remove('chat-float');};
+  clear.onclick=()=>resetChat();
+  if(modeBtn)modeBtn.onclick=toggleChatMode;
+  send.onclick=()=>sendChat();
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();});
+  document.querySelectorAll('.chat-quick button').forEach(btn=>btn.onclick=()=>sendChat(btn.dataset.q));
+  resetChat();
+}
+// ========= 新手引导 Tour =========
+const TOUR_STEPS=[
+  {target:'#MG',title:'选择地图',desc:'点击你要打的地图。推荐选择当前竞技图池中有数据的地图（白色卡片）。',position:'bottom'},
+  {target:'.ts',title:'锁定特工',desc:'点击槽位选择「我」的特工和队友已选的特工。也可以用下方搜索框快速添加。',position:'bottom'},
+  {target:'#BA',title:'分析推荐',desc:'锁定好队伍后，点击此按钮获取阵容推荐和补位建议。',position:'top'}
+];
+let tourStep=-1;
+function shouldShowTour(){return !localStorage.getItem('vp_tour_done');}
+function startTour(){
+  if(!shouldShowTour())return;
+  tourStep=0;renderTourStep();
+}
+function renderTourStep(){
+  const overlay=document.getElementById('TOUR_OVERLAY');
+  const hl=document.getElementById('TOUR_HL');
+  const popup=document.getElementById('TOUR_POPUP');
+  if(tourStep<0||tourStep>=TOUR_STEPS.length){endTour();return;}
+  const step=TOUR_STEPS[tourStep];
+  const el=document.querySelector(step.target);
+  if(!el){endTour();return;}
+  overlay.classList.add('sh');
+  const rect=el.getBoundingClientRect();
+  const pad=8;
+  hl.style.top=(rect.top-pad+window.scrollY)+'px';
+  hl.style.left=(rect.left-pad)+'px';
+  hl.style.width=(rect.width+pad*2)+'px';
+  hl.style.height=(rect.height+pad*2)+'px';
+  // 定位弹窗
+  let popTop,popLeft;
+  if(step.position==='bottom'){
+    popTop=rect.bottom+window.scrollY+16;
+    popLeft=Math.max(16,rect.left);
+  }else{
+    popTop=rect.top+window.scrollY-180;
+    popLeft=Math.max(16,rect.left);
+  }
+  popup.style.top=popTop+'px';
+  popup.style.left=Math.min(popLeft,window.innerWidth-340)+'px';
+  const dots=TOUR_STEPS.map((_,i)=>`<span class="tour-dot${i===tourStep?' on':''}"></span>`).join('');
+  popup.innerHTML=`<div class="tour-step">Step ${tourStep+1}/${TOUR_STEPS.length}</div><div class="tour-title">${step.title}</div><div class="tour-desc">${step.desc}</div><div class="tour-btns"><button class="tour-skip" onclick="endTour()">跳过</button><button class="tour-next" onclick="nextTourStep()">${tourStep===TOUR_STEPS.length-1?'开始使用':'下一步'}</button></div><div class="tour-dots">${dots}</div>`;
+  // 滚动到目标
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function nextTourStep(){tourStep++;renderTourStep();}
+function endTour(){
+  tourStep=-1;
+  localStorage.setItem('vp_tour_done','1');
+  const overlay=document.getElementById('TOUR_OVERLAY');
+  if(overlay)overlay.classList.remove('sh');
+}
+document.addEventListener('DOMContentLoaded',()=>{init();setTimeout(startTour,600);});
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALORANT 地图区域标注工具</title>
+<style>
+:root{
+  --bg:#0a0a0f;--panel:#121218;--panel2:#181822;--line:#2a2a35;--txt:#ece8e1;--muted:#8b8994;
+  --red:#ff4655;--green:#0acf83;--blue:#4d8dff;--gold:#f5c518;--purple:#9b6cff;--shadow:rgba(0,0,0,.35);
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:"Microsoft YaHei",Arial,sans-serif;min-height:100vh;overflow:hidden}
+button,input,select,textarea{font-family:inherit} button{cursor:pointer;border:0;border-radius:8px;background:var(--panel2);color:var(--txt);padding:9px 12px;font-weight:700} button:hover{filter:brightness(1.12)} button.primary{background:var(--red)} button.ghost{border:1px solid var(--line);background:transparent} button.danger{background:#6f1f29} button:disabled{opacity:.45;cursor:not-allowed}
+.app{display:grid;grid-template-columns:260px minmax(520px,1fr) 360px;height:100vh}
+.left,.right{background:var(--panel);border-right:1px solid var(--line);overflow:auto}.right{border-right:0;border-left:1px solid var(--line)}
+.brand{padding:18px;border-bottom:1px solid var(--line)}.brand h1{font-size:18px;margin:0 0 8px}.brand p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+.map-list{padding:12px}.map-card{padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:#101018}.map-card.active{border-color:var(--red);box-shadow:0 0 0 1px rgba(255,70,85,.25)}.map-card .name{font-weight:800;font-size:14px;margin-bottom:6px}.map-card .meta{font-size:11px;color:var(--muted);line-height:1.5}.dup{color:var(--gold)}
+.center{display:flex;flex-direction:column;min-width:0}.toolbar{height:62px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:#101016}.toolbar .title{font-weight:900}.toolbar .spacer{flex:1}.hint{color:var(--muted);font-size:12px}.stage-wrap{flex:1;overflow:auto;padding:18px;background:radial-gradient(circle at top left,rgba(255,70,85,.08),transparent 36%),#08080c}.stage{position:relative;margin:auto;display:block;width:max-content;min-width:320px;box-shadow:0 18px 50px var(--shadow);border:1px solid #30303c;background:#050508}.stage img{display:block;max-width:none;user-select:none;-webkit-user-drag:none}.overlay{position:absolute;inset:0;overflow:visible}.rect{fill:rgba(255,70,85,.18);stroke:var(--red);stroke-width:2;vector-effect:non-scaling-stroke}.rect[data-type="包点"]{fill:rgba(255,70,85,.2);stroke:var(--red)}.rect[data-type="入口"]{fill:rgba(245,197,24,.18);stroke:var(--gold)}.rect[data-type="连接区"]{fill:rgba(77,141,255,.16);stroke:var(--blue)}.rect[data-type="出生点"]{fill:rgba(10,207,131,.16);stroke:var(--green)}.rect.selected{stroke:#fff;stroke-width:3;filter:drop-shadow(0 0 6px rgba(255,255,255,.55))}.draft{fill:rgba(255,255,255,.12);stroke:#fff;stroke-dasharray:7 5;stroke-width:2}.label{font-size:13px;font-weight:900;fill:#fff;paint-order:stroke;stroke:#000;stroke-width:3px;pointer-events:none}.crosshair{cursor:crosshair}
+.form{padding:14px}.section{border-bottom:1px solid var(--line);padding:12px 0}.section:first-child{padding-top:0}.section h2{font-size:14px;margin:0 0 10px}.field{margin-bottom:10px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#0d0d13;color:var(--txt);border-radius:8px;padding:9px 10px;outline:none}.field textarea{min-height:68px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{padding:10px;border:1px solid var(--line);border-radius:8px;background:#0e0e14}.stat b{display:block;font-size:18px}.stat span{font-size:11px;color:var(--muted)}
+.region-list{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:8px}.region-item{padding:9px 10px;border-bottom:1px solid var(--line);font-size:12px;background:#0d0d13}.region-item:last-child{border-bottom:0}.region-item.active{background:#241219}.region-item b{display:block;font-size:13px;margin-bottom:3px}.tag{display:inline-block;padding:2px 6px;border-radius:999px;background:#242431;color:var(--muted);font-size:11px;margin-right:4px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#15151d;border:1px solid var(--line);padding:10px 14px;border-radius:10px;color:#fff;box-shadow:0 10px 30px var(--shadow);display:none;z-index:99}.toast.show{display:block}.file-input{display:none}.small{font-size:11px;color:var(--muted);line-height:1.6}.kbd{border:1px solid var(--line);padding:1px 5px;border-radius:4px;background:#0d0d13;color:#ccc}
+@media(max-width:1100px){.app{grid-template-columns:220px 1fr}.right{position:fixed;right:0;top:0;bottom:0;width:360px;z-index:10;box-shadow:-16px 0 40px var(--shadow)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="left">
+    <div class="brand">
+      <h1>地图区域标注工具</h1>
+      <p>用于给每张 VALORANT 二维地图画矩形区域，后续可接到地图知识库、区域点击提示和 gNPC 上下文。</p>
+    </div>
+    <div id="mapList" class="map-list"></div>
+  </aside>
+
+  <main class="center">
+    <div class="toolbar">
+      <div>
+        <div id="mapTitle" class="title">地图 01</div>
+        <div id="mapSub" class="hint">拖拽地图画区域。坐标会自动按图片比例归一化。</div>
+      </div>
+      <div class="spacer"></div>
+      <button class="ghost" id="zoomOut">缩小</button>
+      <button class="ghost" id="zoomReset">100%</button>
+      <button class="ghost" id="zoomIn">放大</button>
+      <button class="primary" id="exportAllBtn">导出全部 JSON</button>
+    </div>
+    <div class="stage-wrap" id="stageWrap">
+      <div class="stage crosshair" id="stage">
+        <img id="mapImage" alt="map">
+        <svg id="overlay" class="overlay"></svg>
+      </div>
+    </div>
+  </main>
+
+  <aside class="right">
+    <div class="form">
+      <div class="section">
+        <h2>当前地图</h2>
+        <div class="field"><label>地图名称</label><input id="mapNameInput" placeholder="例如：亚海悬城 / 源工重镇"></div>
+        <div class="small">改名后会自动保存到浏览器本地缓存；导出的 JSON 也会带上新名称。</div>
+      </div>
+
+      <div class="section">
+        <h2>新建 / 编辑区域</h2>
+        <div class="field"><label>区域名称</label><input id="regionName" placeholder="例如：A点 / B大 / 中路连接"></div>
+        <div class="row">
+          <div class="field"><label>区域类型</label><select id="regionType"><option>包点</option><option>入口</option><option selected>连接区</option><option>中路</option><option>出生点</option><option>高地</option><option>掩体</option><option>其他</option></select></div>
+          <div class="field"><label>适用阵营</label><select id="side"><option selected>双方</option><option>进攻方</option><option>防守方</option></select></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>适用阶段</label><select id="phase"><option selected>任意阶段</option><option>开局</option><option>默认控图</option><option>进点</option><option>守包</option><option>回防</option><option>残局</option></select></div>
+          <div class="field"><label>优先级</label><select id="priority"><option>高</option><option selected>中</option><option>低</option></select></div>
+        </div>
+        <div class="field"><label>区域播报 / 点位说明</label><textarea id="callout" placeholder="例如：防守方可在此提前架枪；进攻方经过时需要先清近点。"></textarea></div>
+        <div class="field"><label>特工专属提示</label><textarea id="agentTips" placeholder="例如：烟位、闪光、侦察、位移、哨位可怎么配合。"></textarea></div>
+        <div class="btn-row">
+          <button id="applyBtn">保存到选中区域</button>
+          <button class="ghost" id="newModeBtn">取消选择</button>
+          <button class="danger" id="deleteBtn">删除选中</button>
+        </div>
+        <p class="small">操作：先填写右侧信息，再在地图上拖拽画框；也可以先画框，再选中后补字段。</p>
+      </div>
+
+      <div class="section">
+        <h2>区域列表</h2>
+        <div class="stats">
+          <div class="stat"><b id="currentCount">0</b><span>当前地图区域数</span></div>
+          <div class="stat"><b id="totalCount">0</b><span>全部地图区域数</span></div>
+        </div>
+        <div style="height:10px"></div>
+        <div id="regionList" class="region-list"></div>
+      </div>
+
+      <div class="section">
+        <h2>导入 / 导出</h2>
+        <div class="btn-row">
+          <button id="downloadCurrentBtn">导出当前地图</button>
+          <button id="copyAllBtn">复制全部 JSON</button>
+          <button class="ghost" id="importBtn">导入 JSON</button>
+          <button class="ghost" id="undoBtn">撤销</button>
+          <button class="danger" id="clearBtn">清空当前地图</button>
+        </div>
+        <input id="importFile" class="file-input" type="file" accept="application/json,.json">
+        <p class="small">本工具不会上传数据；标注会存到浏览器 localStorage。需要给我继续处理时，点“导出全部 JSON”后把文件发我即可。</p>
+      </div>
+    </div>
+  </aside>
+</div>
+<div id="toast" class="toast"></div>
+
+<script>
+const MAPS = [
+  { id:"map_01", name:"地图 01（待命名）", image:"assets/map-images/map_01.png", width:1065, height:1086 },
+  { id:"map_02", name:"地图 02（待命名）", image:"assets/map-images/map_02.png", width:1205, height:1025 },
+  { id:"map_03", name:"地图 03（待命名）", image:"assets/map-images/map_03.png", width:1091, height:1047 },
+  { id:"map_04", name:"地图 04（待命名）", image:"assets/map-images/map_04.png", width:989, height:1055 },
+  { id:"map_05", name:"地图 05（待命名）", image:"assets/map-images/map_05.png", width:1034, height:947 },
+  { id:"map_06", name:"地图 06（待命名）", image:"assets/map-images/map_06.png", width:1025, height:933 },
+  { id:"map_07", name:"地图 07（待命名）", image:"assets/map-images/map_07.png", width:958, height:914, note:"与地图 08 图片内容相同" },
+  { id:"map_08", name:"地图 08（待命名）", image:"assets/map-images/map_08.png", width:958, height:914, note:"与地图 07 图片内容相同" },
+  { id:"map_09", name:"地图 09（待命名）", image:"assets/map-images/map_09.png", width:1099, height:835, note:"与地图 10 图片内容相同" },
+  { id:"map_10", name:"地图 10（待命名）", image:"assets/map-images/map_10.png", width:1099, height:835, note:"与地图 09 图片内容相同" },
+  { id:"map_11", name:"地图 11（待命名）", image:"assets/map-images/map_11.png", width:1051, height:1090 },
+  { id:"map_12", name:"地图 12（待命名）", image:"assets/map-images/map_12.png", width:963, height:956 }
+];
+const STORE_KEY = "valorant_map_region_annotations_v1";
+const $ = id => document.getElementById(id);
+let state = loadState();
+let currentMapId = MAPS[0].id;
+let selectedRegionId = null;
+let scale = 0.72;
+let drawing = null;
+let historyStack = [];
+
+function defaultState(){ return { schemaVersion:"valorant-map-region-annotation/v1", updatedAt:new Date().toISOString(), maps: MAPS.map(m => ({...m, regions:[]})) }; }
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return defaultState();
+    const saved = JSON.parse(raw);
+    const merged = defaultState();
+    merged.maps = MAPS.map(m => {
+      const old = (saved.maps||[]).find(x => x.id === m.id);
+      return old ? {...m, name: old.name || m.name, regions: Array.isArray(old.regions) ? old.regions : []} : {...m, regions:[]};
+    });
+    return merged;
+  }catch(e){ console.warn(e); return defaultState(); }
+}
+function saveState(){ state.updatedAt = new Date().toISOString(); localStorage.setItem(STORE_KEY, JSON.stringify(state)); renderAll(); }
+function pushHistory(){ historyStack.push(JSON.stringify(state)); if(historyStack.length > 30) historyStack.shift(); }
+function currentMap(){ return state.maps.find(m => m.id === currentMapId); }
+function toast(msg){ const el=$("toast"); el.textContent=msg; el.classList.add("show"); setTimeout(()=>el.classList.remove("show"),1800); }
+function uid(){ return "r_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2,7); }
+function formData(){ return { regionName:$("regionName").value.trim(), regionType:$("regionType").value, side:$("side").value, phase:$("phase").value, priority:$("priority").value, callout:$("callout").value.trim(), agentTips:$("agentTips").value.trim() }; }
+function setForm(r){ $("regionName").value=r?.regionName||""; $("regionType").value=r?.regionType||"连接区"; $("side").value=r?.side||"双方"; $("phase").value=r?.phase||"任意阶段"; $("priority").value=r?.priority||"中"; $("callout").value=r?.callout||""; $("agentTips").value=r?.agentTips||""; }
+function normalizeRect(a,b,map){
+  const x1=Math.max(0,Math.min(a.x,b.x)), y1=Math.max(0,Math.min(a.y,b.y));
+  const x2=Math.min(map.width,Math.max(a.x,b.x)), y2=Math.min(map.height,Math.max(a.y,b.y));
+  return { x:+(x1/map.width).toFixed(6), y:+(y1/map.height).toFixed(6), w:+((x2-x1)/map.width).toFixed(6), h:+((y2-y1)/map.height).toFixed(6) };
+}
+function denorm(r,map){ return { x:r.x*map.width, y:r.y*map.height, w:r.w*map.width, h:r.h*map.height }; }
+function pointerToImage(evt){
+  const img=$("mapImage"); const rect=img.getBoundingClientRect(); const map=currentMap();
+  return { x: Math.max(0, Math.min(map.width, (evt.clientX-rect.left)/scale)), y: Math.max(0, Math.min(map.height, (evt.clientY-rect.top)/scale)) };
+}
+function renderMaps(){
+  $("mapList").innerHTML = state.maps.map(m => `<div class="map-card ${m.id===currentMapId?'active':''}" data-id="${m.id}"><div class="name">${escapeHtml(m.name)}</div><div class="meta">${m.width} × ${m.height}<br>${m.regions.length} 个区域${m.note?`<br><span class="dup">${m.note}</span>`:""}</div></div>`).join("");
+  document.querySelectorAll(".map-card").forEach(el => el.onclick = () => { currentMapId=el.dataset.id; selectedRegionId=null; renderAll(); });
+}
+function renderStage(){
+  const map=currentMap();
+  $("mapTitle").textContent = map.name;
+  $("mapSub").textContent = `${map.width} × ${map.height}，当前 ${map.regions.length} 个区域。拖拽地图即可新增矩形。`;
+  $("mapNameInput").value = map.name;
+  const img=$("mapImage"); img.src=map.image; img.style.width=(map.width*scale)+"px"; img.style.height=(map.height*scale)+"px";
+  const stage=$("stage"); stage.style.width=(map.width*scale)+"px"; stage.style.height=(map.height*scale)+"px";
+  const svg=$("overlay"); svg.setAttribute("viewBox",`0 0 ${map.width} ${map.height}`); svg.style.width=(map.width*scale)+"px"; svg.style.height=(map.height*scale)+"px";
+  svg.innerHTML = map.regions.map(r => {
+    const d=denorm(r,map); const name=escapeHtml(r.regionName||"未命名区域");
+    return `<g data-id="${r.id}"><rect class="rect ${r.id===selectedRegionId?'selected':''}" data-type="${escapeAttr(r.regionType)}" x="${d.x}" y="${d.y}" width="${d.w}" height="${d.h}" rx="4"></rect><text class="label" x="${d.x+6}" y="${d.y+18}">${name}</text></g>`;
+  }).join("");
+  svg.querySelectorAll("g[data-id]").forEach(g => g.addEventListener("mousedown", e => { e.stopPropagation(); selectRegion(g.dataset.id); }));
+}
+function renderRegions(){
+  const map=currentMap();
+  $("currentCount").textContent = map.regions.length;
+  $("totalCount").textContent = state.maps.reduce((s,m)=>s+m.regions.length,0);
+  $("regionList").innerHTML = map.regions.length ? map.regions.map((r,i)=>`<div class="region-item ${r.id===selectedRegionId?'active':''}" data-id="${r.id}"><b>${i+1}. ${escapeHtml(r.regionName||"未命名区域")}</b><span class="tag">${escapeHtml(r.regionType||"连接区")}</span><span class="tag">${escapeHtml(r.side||"双方")}</span><span class="tag">${escapeHtml(r.priority||"中")}</span></div>`).join("") : `<div class="region-item"><span class="small">当前地图还没有区域。先在地图上拖拽画一个矩形。</span></div>`;
+  document.querySelectorAll(".region-item[data-id]").forEach(el => el.onclick = () => selectRegion(el.dataset.id));
+  $("deleteBtn").disabled = !selectedRegionId;
+  $("applyBtn").disabled = !selectedRegionId;
+}
+function renderAll(){ renderMaps(); renderStage(); renderRegions(); }
+function selectRegion(id){ selectedRegionId=id; const r=currentMap().regions.find(x=>x.id===id); setForm(r); renderAll(); }
+function escapeHtml(s){ return String(s??"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+function escapeAttr(s){ return escapeHtml(s).replace(/'/g,"&#39;"); }
+function download(name, data){ const blob=new Blob([data],{type:"application/json;charset=utf-8"}); const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; a.click(); URL.revokeObjectURL(a.href); }
+function exportPayload(mapOnly=false){
+  const payload = mapOnly ? { schemaVersion:state.schemaVersion, exportedAt:new Date().toISOString(), maps:[currentMap()] } : { ...state, exportedAt:new Date().toISOString() };
+  return JSON.stringify(payload, null, 2);
+}
+
+$("overlay").addEventListener("mousedown", e => { if(e.button!==0) return; drawing = { start:pointerToImage(e), end:pointerToImage(e) }; selectedRegionId=null; renderAll(); });
+window.addEventListener("mousemove", e => {
+  if(!drawing) return; drawing.end = pointerToImage(e); renderStage();
+  const map=currentMap(); const r=normalizeRect(drawing.start,drawing.end,map); const d=denorm(r,map);
+  const draft=document.createElementNS("http://www.w3.org/2000/svg","rect"); draft.setAttribute("class","draft"); draft.setAttribute("x",d.x); draft.setAttribute("y",d.y); draft.setAttribute("width",d.w); draft.setAttribute("height",d.h); draft.setAttribute("rx",4); $("overlay").appendChild(draft);
+});
+window.addEventListener("mouseup", () => {
+  if(!drawing) return; const map=currentMap(); const r=normalizeRect(drawing.start,drawing.end,map); drawing=null;
+  if(r.w < 0.006 || r.h < 0.006){ renderAll(); return; }
+  pushHistory(); const data=formData(); const count=map.regions.length+1;
+  map.regions.push({ id:uid(), mapId:map.id, regionName:data.regionName || `区域 ${count}`, regionType:data.regionType, side:data.side, phase:data.phase, priority:data.priority, x:r.x, y:r.y, w:r.w, h:r.h, callout:data.callout, agentTips:data.agentTips, notes:"" });
+  selectedRegionId = map.regions[map.regions.length-1].id; saveState(); toast("已新增区域");
+});
+$("mapNameInput").addEventListener("input", e => { currentMap().name=e.target.value.trim() || currentMap().id; saveState(); });
+$("applyBtn").onclick = () => { if(!selectedRegionId) return; pushHistory(); Object.assign(currentMap().regions.find(r=>r.id===selectedRegionId), formData()); saveState(); toast("已保存到选中区域"); };
+$("newModeBtn").onclick = () => { selectedRegionId=null; setForm(null); renderAll(); };
+$("deleteBtn").onclick = () => { if(!selectedRegionId) return; pushHistory(); const map=currentMap(); map.regions=map.regions.filter(r=>r.id!==selectedRegionId); selectedRegionId=null; saveState(); toast("已删除区域"); };
+$("clearBtn").onclick = () => { if(!confirm("确定清空当前地图的全部区域？")) return; pushHistory(); currentMap().regions=[]; selectedRegionId=null; saveState(); toast("已清空当前地图"); };
+$("undoBtn").onclick = () => { const last=historyStack.pop(); if(!last){ toast("没有可撤销的操作"); return; } state=JSON.parse(last); selectedRegionId=null; localStorage.setItem(STORE_KEY, JSON.stringify(state)); renderAll(); toast("已撤销"); };
+$("zoomIn").onclick = () => { scale=Math.min(1.8, +(scale+0.1).toFixed(2)); renderAll(); };
+$("zoomOut").onclick = () => { scale=Math.max(0.25, +(scale-0.1).toFixed(2)); renderAll(); };
+$("zoomReset").onclick = () => { scale=1; renderAll(); };
+$("exportAllBtn").onclick = () => download("valorant_map_regions_all.json", exportPayload(false));
+$("downloadCurrentBtn").onclick = () => download(`${currentMap().id}_regions.json`, exportPayload(true));
+$("copyAllBtn").onclick = async () => { await navigator.clipboard.writeText(exportPayload(false)); toast("已复制全部 JSON"); };
+$("importBtn").onclick = () => $("importFile").click();
+$("importFile").addEventListener("change", async e => {
+  const file=e.target.files[0]; if(!file) return; const text=await file.text(); const incoming=JSON.parse(text);
+  pushHistory(); const incomingMaps = incoming.maps || [];
+  for(const m of incomingMaps){ const target=state.maps.find(x=>x.id===m.id); if(target){ target.name=m.name||target.name; target.regions=Array.isArray(m.regions)?m.regions:target.regions; } }
+  saveState(); toast("导入完成"); e.target.value="";
+});
+window.addEventListener("keydown", e => { if(e.key==="Delete" && selectedRegionId) $("deleteBtn").click(); if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==="z") { e.preventDefault(); $("undoBtn").click(); } });
+renderAll();
+</script>
+</body>
+</html>

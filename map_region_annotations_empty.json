@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "valorant-map-region-annotation/v1",
+  "updatedAt": "2026-05-26T00:00:00.000Z",
+  "maps": [
+    { "id": "map_01", "name": "地图 01（待命名）", "image": "assets/map-images/map_01.png", "width": 1065, "height": 1086, "regions": [] },
+    { "id": "map_02", "name": "地图 02（待命名）", "image": "assets/map-images/map_02.png", "width": 1205, "height": 1025, "regions": [] },
+    { "id": "map_03", "name": "地图 03（待命名）", "image": "assets/map-images/map_03.png", "width": 1091, "height": 1047, "regions": [] },
+    { "id": "map_04", "name": "地图 04（待命名）", "image": "assets/map-images/map_04.png", "width": 989, "height": 1055, "regions": [] },
+    { "id": "map_05", "name": "地图 05（待命名）", "image": "assets/map-images/map_05.png", "width": 1034, "height": 947, "regions": [] },
+    { "id": "map_06", "name": "地图 06（待命名）", "image": "assets/map-images/map_06.png", "width": 1025, "height": 933, "regions": [] },
+    { "id": "map_07", "name": "地图 07（待命名）", "image": "assets/map-images/map_07.png", "width": 958, "height": 914, "note": "与地图 08 图片内容相同", "regions": [] },
+    { "id": "map_08", "name": "地图 08（待命名）", "image": "assets/map-images/map_08.png", "width": 958, "height": 914, "note": "与地图 07 图片内容相同", "regions": [] },
+    { "id": "map_09", "name": "地图 09（待命名）", "image": "assets/map-images/map_09.png", "width": 1099, "height": 835, "note": "与地图 10 图片内容相同", "regions": [] },
+    { "id": "map_10", "name": "地图 10（待命名）", "image": "assets/map-images/map_10.png", "width": 1099, "height": 835, "note": "与地图 09 图片内容相同", "regions": [] },
+    { "id": "map_11", "name": "地图 11（待命名）", "image": "assets/map-images/map_11.png", "width": 1051, "height": 1090, "regions": [] },
+    { "id": "map_12", "name": "地图 12（待命名）", "image": "assets/map-images/map_12.png", "width": 963, "height": 956, "regions": [] }
+  ]
+}

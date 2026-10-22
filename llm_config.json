@@ -1,0 +1,11 @@
+{
+  "provider": "gnpc",
+  "api_style": "gnpc_agent",
+  "gnpc_base_url": "https://api.gnpc-test.qq.com",
+  "gnpc_chat_url": "https://api.gnpc-test.qq.com/openapi/npc/agent/chat-messages",
+  "gnpc_npc_id": "npc_UiUyeAbu",
+  "gnpc_secret": "",
+  "gnpc_user": "zhenyuanni",
+  "timeout": 60,
+  "extra_headers": {}
+}
